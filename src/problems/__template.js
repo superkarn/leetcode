@@ -10,14 +10,14 @@
 // attempt1: description on the algorithm
 let attempt1 = (param1) => {
     let startTime = Date.now();
-    console.log('  heapUsed 1: ', process.memoryUsage().heapUsed);
+    console.log('--------------------------')
 
     // do something
     let result = param1;
     
     let endTime = Date.now();
-    console.log('  heapUsed 2: ', process.memoryUsage().heapUsed);
-    console.log('  Total time: ', endTime - startTime);
+    console.log('Memory    : ', process.memoryUsage().heapUsed);
+    console.log('Total time: ', endTime - startTime);
     console.log('--------------------------')
 
     return result;
