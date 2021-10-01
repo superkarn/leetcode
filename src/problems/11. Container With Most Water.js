@@ -9,7 +9,7 @@ let maxArea = (height) => {
     //return attempt3(height);
     //return attempt4(height);
     //return attempt5(height);
-    return attempt6(height);
+    return attemptThirdParty(height);
 };
 
 // Attemp1: store all the areas in a 2D array
@@ -243,9 +243,9 @@ let getArea = (height, left, right) => {
     return area;
 };
 
-// Attempt6: shift left and right, which ever is smaller
+// attemptThirdParty: shift left and right, which ever is smaller
 // Go this from https://www.youtube.com/watch?v=UuiTKBwPgAo
-let attempt6 = (height) => {
+let attemptThirdParty = (height) => {
     console.log(`attemp6...`);
     let startTime = Date.now();
     console.log('  heapUsed 1: ', process.memoryUsage().heapUsed);
