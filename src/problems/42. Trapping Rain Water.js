@@ -4,7 +4,7 @@
  * @return {number}
  */
 var trap = function(height) {
-    return attempt1(height);
+    return attemptThirdParty(height);
 };
 
 // attempt1: First find the pair (left, right) that can trap water
@@ -90,6 +90,16 @@ let findWaterVolume = (height, left, right) => {
     return result;
 };
 
+// attemptThirdParty: shift left and right, which is O(n) time and O(1) space
+// Got this from https://www.youtube.com/watch?v=ZI2z5pq0TqA
+let attemptThirdParty = (height) => {
+    let left = 0;
+    let right = height.length-1;
+    let result = 0;
+
+
+    return result;
+};
 
 //           0 1 2 3 4 5 6 7 8 9 0 1
 let input = [0,1,0,2,1,0,1,3,2,1,2,1];
