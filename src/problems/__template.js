@@ -3,22 +3,25 @@
  * @param {number} param1
  * @return {number}
  */
- var myFunction = function(param1) {
-    return attempt1(param1);
-};
-
-// attempt1: description on the algorithm
-let attempt1 = (param1) => {
+var myFunction = function(param1) {
     let startTime = Date.now();
-    console.log('--------------------------')
+    console.log('--------------------------');
 
-    // do something
-    let result = param1;
+    // Pick the algorithm
+    let result = bruteForce(param1);
     
     let endTime = Date.now();
     console.log('Memory    : ', process.memoryUsage().heapUsed);
     console.log('Total time: ', endTime - startTime);
-    console.log('--------------------------')
+    console.log('--------------------------');
+
+    return result;
+};
+
+// attempt1: description on the algorithm
+let bruteForce = (param1) => {
+    // do something
+    let result = param1;
 
     return result;
 };
