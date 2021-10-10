@@ -7,10 +7,13 @@
 var twoSum = function(nums, target) {
     let startTime = Date.now();
     console.log('--------------------------');
+    console.log(`nums      :  ${nums}`);
+    console.log(`target    :  ${target}`);
+    
     
     //let result = bruteForce(nums, target);
     //let result = twoPointers(nums, target);
-    let result = mapApproach(nums, target);    
+    let result = dictionaryApproach(nums, target);    
 
     let endTime = Date.now();
     console.log('Memory    : ', process.memoryUsage().heapUsed);
@@ -70,14 +73,26 @@ let twoPointers = (nums, target) => {
 };
 
 
-// Map approach: O(n)
+// Dictionary approach: O(n), but requires space O(n) as well
 // https://leetcode.com/problems/two-sum/discuss/17/Here-is-a-Python-solution-in-O(n)-time/595114
-// Since it's guaranteed to only have one pair, we know that Xa + Xb = target.
-// Which means Xa = target - Xb.
-let mapApproach = (nums, target) => {
+// Since it's guaranteed to only have one pair, we know that nums[a] + nums[b] = target.
+// This means nums[a] = target - nums[b].
+// So for each nums[i], we check if it is already in the buffer dicionary.
+// If it is not, we save i in the dictionary with the key [target-nums[i]] (which is the complimentary value nums[b]).
+// If it is, we return the previous complimentary index (i.e. buffer[nums[i]]) and the current index.
+let dictionaryApproach = (nums, target) => {
+    let buffer = {};
+    for (let i=0; i<nums.length; i++) {
+        if (nums[i] in buffer) {
+            return [buffer[nums[i]], i];
+        } else {
+            buffer[target-nums[i]] = i;
+        }
+    }
     return [];
 };
 
+//let input = [2,7,11,15];
 let input = [3,2,4];
 let target = 6;
 let output = twoSum(input, target);
