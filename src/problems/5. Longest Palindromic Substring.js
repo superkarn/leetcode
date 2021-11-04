@@ -11,7 +11,7 @@ var longestPalindrome = function(s) {
 
     // Pick the algorithm
     console.log('--Logs-------------------');
-    let result = bruteForce(s);
+    let result = checkFromMiddle(s);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -66,6 +66,57 @@ let isPalindrome = (s) => {
     return false;
 };
 
+// attempt 2: check palindrome from the middle outward
+// https://www.youtube.com/watch?v=XYQecbcd6_c
+let checkFromMiddle = (s) => {
+    let result = ""
+    let resultLength = 0;
+
+    for (let i=0; i<s.length; i++) {
+        // check for odd length palindromes
+        let l = i;
+        let r = i;
+        let tmp = expand(s, l, r, result, resultLength);
+        if (tmp.resultLength > resultLength) {
+            result = tmp.result;
+            resultLength = tmp.resultLength;
+        }
+
+        // check for even length palindromes
+        l = i;
+        r = i+1;
+        tmp = expand(s, l, r, result, resultLength);
+        if (tmp.resultLength > resultLength) {
+            result = tmp.result;
+            resultLength = tmp.resultLength;
+        }
+    }
+
+    return result;
+};
+
+let expand = (s, l, r, result, resultLength) => {
+    let resultObject = { result, resultLength };
+
+    // while the l,r pointers are withing the string
+    // and we still have a palindrome
+    while (0 <= l && r < s.length && s[l] == s[r]) {
+        //console.log(`  checking ${l}, ${r}: ${s.substring(l,r+1)}`);
+
+        let currentLength = r - l +1;
+        if (currentLength > resultObject.resultLength) {
+            resultObject.result = s.substring(l,r+1);
+            resultObject.resultLength = currentLength;
+            //console.log(`      new result: ${resultObject.result}`);
+        }
+        l -= 1;
+        r += 1;
+    }
+
+    return resultObject;
+};
+
 let input = "civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth";
+//let input = "babbad";
 let output = longestPalindrome(input);
 console.log(output);
