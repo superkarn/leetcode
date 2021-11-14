@@ -6,11 +6,15 @@
 var myFunction = function(param1) {
     let startTime = Date.now();
     console.log('--------------------------');
+    console.log('--Parameters--------------');
+    console.log(`param1    :  ${param1}`);
 
     // Pick the algorithm
+    console.log('--Logs-------------------');
     let result = bruteForce(param1);
     
     let endTime = Date.now();
+    console.log('--Stats-------------------');
     console.log('Memory    : ', process.memoryUsage().heapUsed);
     console.log('Total time: ', endTime - startTime);
     console.log('--------------------------');
