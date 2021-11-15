@@ -12,7 +12,7 @@ var intToRoman = function(num) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = attempt1(num);
+    let result = attemp2Map(num);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -78,8 +78,20 @@ let calculateTens = (num, ithPower) => {
     }
 
     return result;
-}
+};
 
-let input = 1994;
+// https://leetcode.com/problems/integer-to-roman/discuss/6274/Simple-Solution
+let attemp2Map = (num) => {
+    const M = ['', 'M', 'MM', 'MMM'];
+    const C = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM',];
+    const X = ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC',];
+    const I = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX',];
+    return M[Math.floor(num/1000)] 
+        + C[Math.floor((num%1000)/100)] 
+        + X[Math.floor((num%100)/10)] 
+        + I[Math.floor(num%10)];
+};
+
+let input = 3994;
 let output = intToRoman(input);
 console.log(output);
