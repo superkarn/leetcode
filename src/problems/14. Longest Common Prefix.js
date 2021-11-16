@@ -11,7 +11,7 @@ var longestCommonPrefix = function(strs) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(strs);
+    let result = sortThenCompareFirstLast(strs);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -47,6 +47,31 @@ let bruteForce = (strs) => {
             }
         }
         result += currentLetter;
+    }
+
+    return result;
+};
+
+// attemmp2: sort the array, then compare first and last elements
+// https://leetcode.com/problems/longest-common-prefix/discuss/6924/Sorted-the-array-Java-solution-2-ms
+let sortThenCompareFirstLast = (strs) => {
+    if (strs.length == 0) {
+        return '';
+    }
+
+    // sort the array
+    strs.sort();
+
+    let result = '';
+    let first = strs[0];
+    let last = strs[strs.length-1];
+
+    for (let i=0; i<first.length; i++) {
+        if (i < last.length && first[i] == last[i]) {
+            result += first[i];
+        } else {
+            return result;
+        }
     }
 
     return result;
