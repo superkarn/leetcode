@@ -150,7 +150,45 @@ let contains3 = (array, item) => {
     return false;
 };
 
+// attempt3: loop through the first number, then use 2-pointers to find the 2nd and 3rd numbers 
+let attemp3 = (nums) => {
+    // if there are less than 3 items, then return []
+    if (nums.length<3) {
+        return [];
+    }
 
+    let result = [];
+
+    // sort the array (has to explicitly compare numbers)
+    nums.sort((a,b) => a-b);
+    
+    // i-loop for the first number
+    for (let i=0; i<nums.length; i++) {
+        let left = i+1;
+        let right = nums.length-1;
+        
+        while (left < right) {
+            let sum = nums[i] + nums[left] + nums[right];
+
+            // If sum is too small, try larger by moving left
+            if (sum < 0) {
+                left++;
+            } 
+            // If sum is too large, try smaller by moving right
+            else if (sum > 0) {
+                right--;
+            } 
+            // Found a solution
+            else {
+                console.log(`found a set: ${nums[i]}, ${nums[j]}, ${nums[k]}`);
+                result.push([nums[i], nums[left], nums[right]]);
+            }
+        }
+
+    }
+
+    return result;
+};
 
 //let input = [-1,0,1,2,-1,-4];
 //let input = [0,0,0,0];
