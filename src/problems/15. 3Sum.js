@@ -106,8 +106,8 @@ let attempt2 = (nums) => {
             let currentSum2 = nums[i] + nums[j];
             
             // if the sum of first 2 numbers is > 0, then there's no need to search j-loop further
-            //console.log(`  ${currentSum2}, ${result.length}, ${contains2(result, [nums[i], nums[j]])}`);
-            if (currentSum2 >= 0 && result.length > 0 && contains2(result, [nums[i], nums[j]])) {
+            //console.log(`  ${currentSum2}, ${result.length}`);
+            if (currentSum2 >= 0 && result.length > 0) {
                 //console.log(`    breaking j-loop ${j} because ${nums[i]} + ${nums[j]} >= 0`);
                 break;
             }
@@ -128,18 +128,6 @@ let attempt2 = (nums) => {
     }
 
     return result;
-};
-
-// Check if the array contains an item that matches the first two elements
-let contains2 = (array, item) => {
-    for (let i=0; i<array.length; i++) {
-        if (   array[i][0] == item[0]
-            && array[i][1] == item[1]) {
-                return true;
-            }
-    }
-
-    return false;
 };
 
 // Check if the array contains an item that matches all three elements
