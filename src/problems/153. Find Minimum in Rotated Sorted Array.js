@@ -11,7 +11,7 @@ var findMin = function(param1) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = binarySplit(param1);
+    let result = binarySearch(param1);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -77,10 +77,27 @@ let binarySplit = (param1) => {
     return binarySearch(p);
 };
 
-let input = [1]; // 1
+// https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/discuss/158940/Beat-100%3A-Very-Simple-(Python)-Very-Detailed-Explanation
+let binarySearch = (param1) => {
+    let left = 0;
+    let right = param1.length-1;
+
+    while (left < right) {
+        let mid = Math.floor((left + right)/2);
+        if (param1[mid] > param1[right]) {
+            left = mid+1;
+        } else {
+            right = mid;
+        }
+    }
+
+    return param1[left];
+};
+
+//let input = [1]; // 1
 //let input = [1,2]; // 1
 //let input = [3,1,2]; // 1
-//let input = [3,4,5,1,2]; // 1
+let input = [2,3,4,5,1]; // 1
 //let input = [4,5,6,7,0,1,2]; // 0
 //let input = [11,13,15,17]; // 11
 //let input = [6,7,8,9,10,1,2,3,4,5]; // 1
