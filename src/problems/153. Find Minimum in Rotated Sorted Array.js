@@ -27,10 +27,24 @@ var findMin = function(param1) {
 
 // attempt1: description on the algorithm
 let bruteForce = (param1) => {
-    let result = param1;
+    if (param1.length == 1) {
+        return param1[0];
+    }
 
-    return result;
+    for (let i=0; i<param1.length; i++) {
+        let previousIndex = i == 0 ? param1.length-1 : i-1;
+
+        //console.log(`[${previousIndex}]: ${param1[previousIndex]} ? [${i}]: ${param1[i]}`);
+        if (param1[previousIndex] > param1[i]) {
+            return param1[i];
+        }
+    }
+
+    throw new Error('Something went wrong.');
 };
 
-let input = [1,2,3,4,5];
+let input = [1];
+//let input = [3,4,5,1,2]; // 1
+//let input = [4,5,6,7,0,1,2]; // 0
+//let input = [11,13,15,17]; // 11
 let output = findMin(input);
