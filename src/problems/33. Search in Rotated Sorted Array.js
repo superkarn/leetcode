@@ -13,7 +13,7 @@ var search = function(nums, target) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteforce(nums, target);
+    let result = binarySearch(nums, target);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -41,10 +41,29 @@ let bruteforce = (nums, target) => {
     return -1;
 };
 
+let binarySearch = (nums, target) => {
+    let l = 0;
+    let r = nums.length-1;
+
+    while (l < r) {
+        let mid = Math.floor((l+r)/2);
+        console.log(`  l: ${l}, mid: ${mid}, r: ${r}`);
+        
+        // TODO
+    }
+
+    return (nums[l] == target) ? l : -1;
+};
+
+
 //let input = [4,5,6,7,0,1,2]; let target = 0; // 4
 //let input = [4,5,6,7,0,1,2]; let target = 3; // -1
 //let input = [1]; let target = 0; // -1
-let input = [1]; let target = 1; // 1
+//let input = [1]; let target = 1; // 0
+//let input = [1,3]; let target = 3; // 1
+//let input = [5,1,3]; let target = 1; // 1
 //let input = [4,5,6,7,0,1,2]; let target = 3; // -1
+//let input = [4,5,6,7,0,1,2]; let target = 1; // 5
+let input = [4,5,6,7,0,1,2]; let target = 6; // 2
 
 let output = search(input, target);
