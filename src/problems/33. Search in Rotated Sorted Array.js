@@ -29,8 +29,22 @@ var search = function(nums, target) {
 
 // attempt1: description on the algorithm
 let bruteforce = (nums, target) => {
+    if (nums[0] == target) return 0;
+
+    for (let i=1; i<nums.length; i++) {
+        if (nums[i] == target) {
+            return i;
+        }
+    }
+
+    // target not found
+    return -1;
 };
 
-let input = [4,5,6,7,0,1,2]; let target = 0; // 4
+//let input = [4,5,6,7,0,1,2]; let target = 0; // 4
+//let input = [4,5,6,7,0,1,2]; let target = 3; // -1
+//let input = [1]; let target = 0; // -1
+let input = [1]; let target = 1; // 1
+//let input = [4,5,6,7,0,1,2]; let target = 3; // -1
 
 let output = search(input, target);
