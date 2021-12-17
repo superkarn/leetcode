@@ -1,5 +1,18 @@
 # leetcode
-
+- [Useful Algorithms](#useful-algorithms)
+- [Blind's Top 75 Questions](#blind-s-top-75-questions)
+  * [Array](#array)
+  * [Binary](#binary)
+  * [Dynamic Programming](#dynamic-programming)
+  * [Graph](#graph)
+  * [Interval](#interval)
+  * [Linked List](#linked-list)
+  * [Matrix](#matrix)
+  * [String](#string)
+  * [Tree](#tree)
+  * [Heap](#heap)
+- [Extra](#extra)
+  * [Dynamic Programming](#dynamic-programming-1)
 
 
 ## Useful Algorithms
