@@ -11,7 +11,7 @@ var numDecodings = function(s) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = dfs(s);
+    let result = dp(s);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -64,11 +64,52 @@ let dfs_recursive = (s, i=0) => {
     return result;
 };
 
+// dynamic programming, from left to right
+let dp = (s) => {
+    // Empty string
+    if (!s || s.length == 0) {
+        return 0;
+    }
+
+    // If the first letter starts with a 0, it's invalid
+    // But the program is expecting 0
+    if (s[0] == '0') {
+        return 0;
+    }
+
+    // Keep track as we go, using 1-index, with 0th element to help make it easier
+    let cache = new Array(s.length+1);    
+    cache[0] = 1;
+    cache[1] = s[0] == '0' ? 0 : 1;
+
+    //console.log(`  cache[0] = ${cache[0]} `);
+    //console.log(`  cache[1] = ${cache[1]} (${s[1-1]})`);
+    for (let i=2; i<=s.length; i++) {
+        // start off with 0
+        cache[i] = 0;
+
+        // 1-9; no new paths. so we keep the same count as i-1
+        if (s[i-1] != '0') {
+            cache[i] += cache[i-1];
+        }
+
+        // 10-26; extra paths, so we add the count from i-2
+        if ((s[i-2] == '1') ||
+            (s[i-2] == '2' && '0123456'.indexOf(s[i-1]) >-1)) {
+            cache[i] += cache[i-2];
+        }
+
+        //console.log(`  cache[${i}] = ${cache[i]} (${s[i-1]})`);
+    }
+
+    // return the last one
+    return cache[s.length];
+};
 
 //let input = "12"; // 2
-let input = "226"; // 3
+//let input = "226"; // 3
 //let input = "0"; // 0
 //let input = "06"; // 0
-//let input = '11106'; // 2
+let input = '11106'; // 2
 
 let output = numDecodings(input);
