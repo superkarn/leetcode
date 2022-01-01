@@ -13,7 +13,7 @@ var coinChange = function(coins, amount) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(param1);
+    let result = dp(coins, amount);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -28,14 +28,33 @@ var coinChange = function(coins, amount) {
 };
 
 // attempt1: description on the algorithm
-let bruteForce = (coins, amount) => {
-    let result = param1;
+let dp = (coins, amount) => {
+    // special cases
+    if (amount == 0) return 0;
 
-    return result;
+    let cache = Array(amount+1).fill(Number.MAX_SAFE_INTEGER);
+    // 0th is a base case
+    cache[0] = 0;
+
+    // Calculate the results for all the values up to amount
+    for (let i=1; i<amount+1; i++) {
+        // Check each coin
+        for (let c=0; c<coins.length; c++) {
+            // If the current coin can be added without going over
+            if (i-coins[c] >= 0) {
+                // Then set the result for the current ith amount to the minimum between
+                // itself or the result of the i-currentCoin +1
+                cache[i] = Math.min(cache[i], cache[i-coins[c]] +1);
+                //console.log(`  ${i}: ${cache[i]}`);
+            }
+        }
+    }
+
+    return cache[amount] == Number.MAX_SAFE_INTEGER ? -1 : cache[amount];
 };
 
-let coins = [1,2,3,4,5], amount = 11; // 3
+//let coins = [1,2,5], amount = 11; // 3
 //let coins = [2], amount = 3; // -1
-//let coins = [1], amount = 0; // 0
+let coins = [1], amount = 0; // 0
 
 let output = coinChange(coins, amount);
