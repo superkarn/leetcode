@@ -44,7 +44,7 @@
 ### Dynamic Programming
 - [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
 - [322. Coin Change](https://leetcode.com/problems/coin-change/)
-- [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
+- [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
 - [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 - [Word Break Problem](https://leetcode.com/problems/word-break/)
 - [Combination Sum](https://leetcode.com/problems/combination-sum-iv/)
