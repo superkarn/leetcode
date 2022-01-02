@@ -17,6 +17,7 @@
 
 ## Useful Algorithms
 - [Kadane's Algorithm](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Kadane's_algorithm) for maximum subarray problems.
+- [Patience Sorting](https://en.wikipedia.org/wiki/Patience_sorting) for longest increasing subsequence in an array.
 
 
 ## Blind's Top 75 Questions
