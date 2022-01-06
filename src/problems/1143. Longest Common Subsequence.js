@@ -29,8 +29,8 @@ var longestCommonSubsequence = function(text1, text2) {
 
 // attempt1: description on the algorithm
 let bruteForce = (text1, text2) => {
-    let t1 = [];
-    let t2 = [];
+    let t1 = [], t2 = [];
+    let r1 = [], r2 = [];
 
     // convert strings to array for ease of manipulation
     let a1 = [...text1];
@@ -44,10 +44,10 @@ let bruteForce = (text1, text2) => {
 
         // If the character at i is in both, add to t1, t2
         if (j > -1) {
-            t1.push(c);
-            t2.push(c);
+            t1[i] = c;
+            t2[j] = c;
         } else {
-            console.log(`    SKIP: ${c} is not in text2`);
+            //console.log(`    SKIP: ${c} is not in text2`);
         }
 
         // Remove c
@@ -55,11 +55,18 @@ let bruteForce = (text1, text2) => {
         a2[j] = '';
     }
 
-    for (let i=0; i<text1.length; i++) {
-        // c is guaranteed to be in the right order in text1
-        let c = text1[i];
+    // Trim t1, t2
+    t1 = t1.filter(x => x);
+    t2 = t2.filter(x => x);
 
-        let j = text2.indexOf(c);
+    console.log(`t1: ${t1}`);
+    console.log(`t2: ${t2}`);
+
+    for (let i=0; i<t1.length; i++) {
+        // c is guaranteed to be in the right order in text1
+        let c = t1[i];
+
+        let j = t2.indexOf(c);
 
         // If c is not in text2, skip
         if (j == -1) {
@@ -68,27 +75,30 @@ let bruteForce = (text1, text2) => {
         }
 
         // If c is not in the right order in text2, skip
-        if (j < t2.length-1) {
-            console.log(`    SKIP: ${c} is not in the right order in ${text2}`);
+        if (j < r2.length-1) {
+            console.log(`    SKIP: ${c} is not in the right order in ${t2}`);
             continue;
         }
 
         // Add c to t1 and t2
-        t1[i] = c;
-        t2[j] = c;
+        r1[i] = c;
+        r2[j] = c;
 
         console.log(`    ADD: ${c} at ${j}`);
+        
+        console.log(`    t1: ${t1}`);
+        console.log(`    t2: ${t2}`);
     }
 
     // Trim t1
-    return t1.filter(x => x).length;
+    return r1.filter(x => x).length;
 };
 
 //let text1 = "abcde", text2 = "ace"; // 3
 //let text1 = "abc", text2 = "abc"; // 3
 //let text1 = "abc", text2 = "def"; // 0
 //let text1 = "abcde", text2 = "aec"; // 2
-let text1 = "bsbininm", text2 = "jmjkbkjkv"; // 1
-//let text1 = "oxcpqrsvwf", text2 = "shmtulqrypy"; // 2
+//let text1 = "bsbininm", text2 = "jmjkbkjkv"; // 1
+let text1 = "oxcpqrsvwf", text2 = "shmtulqrypy"; // 2
 
 let output = longestCommonSubsequence(text1, text2);
