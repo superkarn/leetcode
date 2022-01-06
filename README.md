@@ -17,6 +17,7 @@
 
 ## Useful Algorithms
 - [Kadane's Algorithm](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Kadane's_algorithm) for maximum subarray problems.
+- [Patience Sorting](https://en.wikipedia.org/wiki/Patience_sorting) for longest increasing subsequence in an array.
 
 
 ## Blind's Top 75 Questions
@@ -44,7 +45,7 @@
 ### Dynamic Programming
 - [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
 - [322. Coin Change](https://leetcode.com/problems/coin-change/)
-- [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
+- [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
 - [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 - [Word Break Problem](https://leetcode.com/problems/word-break/)
 - [Combination Sum](https://leetcode.com/problems/combination-sum-iv/)
