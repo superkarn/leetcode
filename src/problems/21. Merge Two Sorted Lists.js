@@ -20,7 +20,7 @@ var mergeTwoLists = function(list1, list2) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(list1, list2);
+    let result = recursion(list1, list2);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -114,6 +114,19 @@ let bruteForce = (list1, list2) => {
     }
 
     return result.next;
+};
+
+let recursion = (list1, list2) => {
+    if (!list1) return list2;
+    if (!list2) return list1;
+
+    if (list1.val <= list2.val) {
+        list1.next = recursion(list1.next, list2);
+        return list1;
+    } else {
+        list2.next = recursion(list1, list2.next);
+        return list2;
+    }
 };
 
 //let list1 = [1,2,4], list2 = [1,3,4]; // [1,1,2,3,4,4]
