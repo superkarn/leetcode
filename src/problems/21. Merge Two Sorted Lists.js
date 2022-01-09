@@ -28,7 +28,7 @@ var mergeTwoLists = function(list1, list2) {
     console.log('Total time: ', endTime - startTime);
 
     console.log('--Result------------------');
-    console.log(result);
+    console.log(result.toString());
     console.log('--------------------------');
 
     return result;
@@ -42,11 +42,14 @@ function ListNode(val, next) {
         let str = `${this.val}`;
         let n = this.next;
 
-        if (n && n.next) {
+        if (n) {
             while (n.next) {
                 str += `, ${n.val}`;
                 n = n.next;
             }
+
+            // The last node            
+            str += `, ${n.val}`;
         }
         return str;
     }
@@ -66,31 +69,37 @@ let bruteForce = (list1, list2) => {
     let r = result;
 
     while (list1.next != null || list2.next != null) {
-        // If list1 is out, get the rest of list2
-        if (list1.next == null) {
-            console.log(`  list1 is empty`);
-            r.next = list2;
-            break;
-        }
-
-        // If list2 is out, get the rest of list1
-        if (list2.next == null) {
-            console.log(`  list2 is empty`);
-            r.next = list2;
-            break;
-        }
-
-        console.log(`  r.next -> list1 (${list1.val})`);
+        console.log(`  ${list1.val} vs ${list2.val}`);
         if (list1.val <= list2.val) {
-            //console.log(`    r.next (${r.val}) -> list1 (${list1.val})`);
+            console.log(`    r.next (${r.val}) -> list1 (${list1.val})`);
             r.next = list1;
             r = r.next;
-            list1 = list1.next;
+            
+            // If list1 has more nodes, move the pointer to the next node
+            if (list1.next != null) {
+                list1 = list1.next;
+            } 
+            // If list1 is out, get the rest of list2
+            else {
+                console.log(`  list1 is empty`);
+                r.next = list2;
+                break;
+            }
         } else {
-           // console.log(`    r.next (${r.val}) -> list2 (${list2.val})`);
+            console.log(`    r.next (${r.val}) -> list2 (${list2.val})`);
             r.next = list2;
             r = r.next;
-            list2 = list2.next;
+            
+            // If list2 has more nodes, move the pointer to the next node
+            if (list2.next != null) {
+                list2 = list2.next;
+            } 
+            // If list2 is out, get the rest of list1
+            else {
+                console.log(`  list2 is empty`);
+                r.next = list1;
+                break;
+            }
         }
 
         //console.log(`    list1:  ${list1.toString()}`);
@@ -103,7 +112,8 @@ let bruteForce = (list1, list2) => {
 };
 
 //let list1 = [1,2,4], list2 = [1,3,4]; // [1,1,2,3,4,4]
-let list1 = [], list2 = []; // []
+let list1 = [1,2,6,6,7,8], list2 = [1,3,4,5]; // [1,1,2,3,4,5,6,6,7,8]
+//let list1 = [], list2 = []; // []
 //let list1 = [], list2 = [0]; // [0]
 
 let output = mergeTwoLists(convertArrayToLinkedList(list1), convertArrayToLinkedList(list2));
