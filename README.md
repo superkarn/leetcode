@@ -17,7 +17,9 @@
 
 ## Useful Algorithms
 - [Kadane's Algorithm](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Kadane's_algorithm) for maximum subarray problems.
-- [Patience Sorting](https://en.wikipedia.org/wiki/Patience_sorting) for longest increasing subsequence in an array.
+- [KMP Pattern Searching](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm) ((Geeks for Geeks)[https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/])
+- [Patience Sorting](https://en.wikipedia.org/wiki/Patience_sorting) for longest increasing subsequence in an array. ((Geeks for Geeks)[https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/])
+- Z algorithm for linear pattern searching.  ((Geeks for Geeks)[https://www.geeksforgeeks.org/z-algorithm-linear-time-pattern-searching-algorithm/])
 
 
 ## Blind's Top 75 Questions
