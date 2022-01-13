@@ -13,7 +13,7 @@ var removeElement = function(nums, val) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(nums, val);
+    let result = betterLoop(nums, val);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -54,6 +54,21 @@ let bruteForce = (nums, val) => {
     
     // Kind of cheating using filter()
     return nums.filter(x => x!=val).length;
+};
+
+// https://leetcode.com/problems/remove-element/discuss/12299/Very-simple-and-optimal-c%2B%2B-solution.
+// i is the index going through nums
+// j is the index of the unique position, only incrementing when a new unique is found
+let betterLoop = (nums, val) => {
+    let j = 0;
+    for(let i=0; i<nums.length; i++) {
+        if (nums[i] != val) {
+            nums[j] = nums[i];
+            j++;
+        }
+    }
+    
+    return j;
 };
 
 //let nums = [3,2,2,3], val = 3; // 2
