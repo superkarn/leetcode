@@ -11,7 +11,7 @@ var lengthOfLastWord = function(s) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(s);
+    let result = builtInMethods(s);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -26,14 +26,15 @@ var lengthOfLastWord = function(s) {
 };
 
 // attempt1: description on the algorithm
-let bruteForce = (s) => {
-    let result = s;
+let builtInMethods = (s) => {
+    let words = s.split(' ').filter(x => x != '' && x != ' ');
+    let lastWord = words[words.length-1];
 
-    return result;
+    return lastWord.length;
 };
 
-let s = "Hello World"; // 5
+//let s = "Hello World"; // 5
 //let s = "   fly me   to   the moon  "; // 4
-//let s = "luffy is still joyboy"; // 6
+let s = "luffy is still joyboy"; // 6
 
 let output = lengthOfLastWord(s);
