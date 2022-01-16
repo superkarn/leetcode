@@ -37,4 +37,8 @@ let inputs = [
     { param1:2, output:2 },
 ];
 
+// Comparing scalar output
 console.log(inputs.map(x => myFunction(x.param1) == x.output));
+
+// Comparing array output
+console.log(inputs.map(x => myFunction(x.digits).every((v,i) => v === x.output[i])));
