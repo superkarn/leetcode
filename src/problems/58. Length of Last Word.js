@@ -11,7 +11,7 @@ var lengthOfLastWord = function(s) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = fromRight(s);
+    let result = fromRight2(s);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -63,13 +63,39 @@ let fromRight = (s) => {
     return endOfLastWord - startOfLastWord +1;
 };
 
-let s = "Hello World"; // 5
+// https://leetcode.com/problems/length-of-last-word/discuss/370636/Java-0ms-or-100-or-100-Single-Reverse-loop-with-explanation
+let fromRight2 = (s) => {
+    let result = 0;
+
+    for (let i=s.length-1; i>=0; i--) {
+        // If the current char is a space, 
+        if (s[i] == ' ') {
+            // If we have already started counting, then we've found the last word
+            if (result > 0) {
+                //console.log(`  ${i} is a space.  Found last word, length = ${result}`);
+                return result;
+            }
+
+            // else go to the next char
+            //console.log(`  ${i} is a space, but no word found yet`);
+        }
+        // Else keep counting
+        else {
+            //console.log(`    length: ${result}`);
+            result++;
+        }
+    }
+
+    return result;
+};
+
+//let s = "Hello World"; // 5
 //let s = "   fly me   to   the moon  "; // 4
 //let s = "luffy is still joyboy"; // 6
 //let s = ""; // 0
 //let s = "  "; // 0
 //let s = "  a"; // 1
-//let s = "  aaa  "; // 3
+let s = "  aaa  "; // 3
 //let s = "aaa"; // 3
 
 let output = lengthOfLastWord(s);
