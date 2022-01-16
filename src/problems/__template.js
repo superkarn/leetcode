@@ -32,5 +32,9 @@ let bruteForce = (param1) => {
     return result;
 };
 
-let input = [1,2,3,4,5];
-let output = myFunction(input);
+let inputs = [
+    { param1:"Hello World", output:"Hello World" },
+    { param1:2, output:2 },
+];
+
+console.log(inputs.map(x => myFunction(x.param1) == x.output));

@@ -89,13 +89,15 @@ let fromRight2 = (s) => {
     return result;
 };
 
-//let s = "Hello World"; // 5
-//let s = "   fly me   to   the moon  "; // 4
-//let s = "luffy is still joyboy"; // 6
-//let s = ""; // 0
-//let s = "  "; // 0
-//let s = "  a"; // 1
-let s = "  aaa  "; // 3
-//let s = "aaa"; // 3
+let inputs = [
+    { s:"Hello World", output:5 },
+    { s:"   fly me   to   the moon  ", output:4 },
+    { s:"luffy is still joyboy", output:6 },
+    { s:"", output:0 },
+    { s:"  ", output:0 },
+    { s:"  a", output:1 },
+    { s:"  aaa", output:3 },
+    { s:"aaa", output:3 },
+];
 
-let output = lengthOfLastWord(s);
+console.log(inputs.map(x => lengthOfLastWord(x.s) == x.output));
