@@ -11,7 +11,7 @@ var lengthOfLastWord = function(s) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = builtInMethods(s);
+    let result = fromRight(s);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -33,8 +33,43 @@ let builtInMethods = (s) => {
     return lastWord.length;
 };
 
-//let s = "Hello World"; // 5
+// Iterate from the end
+let fromRight = (s) => {
+    let startOfLastWord = 0;
+    let endOfLastWord = -1;
+
+    for (let i=s.length-1; i>=0; i--) {
+        //console.log(`  [${i}]: ${s[i]} from ${startOfLastWord} to ${endOfLastWord}`);
+
+        // If the current character is a space
+        if (s[i] == ' ') {
+            // If there's no word yet, go to next iteration
+            if (endOfLastWord == -1) {
+                //console.log(`    no last word yet`);
+                continue;
+            }
+
+            // Else we found the beginning of the last word
+            startOfLastWord = i+1;
+            break;
+        } 
+        // Else we check to see if endOfLastWord has been set.  If not, set it to the current i 
+        else if (endOfLastWord == -1) {
+            endOfLastWord = i;
+            //console.log(`    found end of last word: ${endOfLastWord}`);
+        }
+    }
+
+    return endOfLastWord - startOfLastWord +1;
+};
+
+let s = "Hello World"; // 5
 //let s = "   fly me   to   the moon  "; // 4
-let s = "luffy is still joyboy"; // 6
+//let s = "luffy is still joyboy"; // 6
+//let s = ""; // 0
+//let s = "  "; // 0
+//let s = "  a"; // 1
+//let s = "  aaa  "; // 3
+//let s = "aaa"; // 3
 
 let output = lengthOfLastWord(s);
