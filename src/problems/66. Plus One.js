@@ -30,12 +30,12 @@ let bruteForce = (digits) => {
     // increment the last digit
     digits[digits.length-1]++;
 
-    // start from the 2nd-to-last, and go backward
+    // start from the end, and go backward
     for (let i=digits.length-1; i>=0; i--) {
         //console.log(`  [${i}] = ${digits[i]}: ${digits}`);
         // if the digit is 10, change it to 0, and update carry over
         if (digits[i] == 10) {
-            console.log(`    found 10`); 
+            //console.log(`    found 10`); 
             digits[i] = 0;
 
             // If i-1 exist, increment the value
@@ -53,6 +53,28 @@ let bruteForce = (digits) => {
     return digits;
 };
 
+// Optimized solution 
+// https://leetcode.com/problems/plus-one/discuss/24082/My-Simple-Java-Solution
+let optimized = (digits) => {
+    // start from the end, and go backward
+    for (let i=digits.length-1; i>=0; i--) {
+        // If the current number is less than 9, increment it and return
+        // Since there's no more need to increment
+        if (digits[i] < 9) {
+            digits[i]++;
+            return digits;
+        }
+
+        // Else the current number is 9, which means it would get incremented to 10
+        // So we set it to 0 and go to the next number
+        digits[i] = 0;
+    }
+
+    // If we get here, then all the numbers are 9, and we need to add 1 to the front
+    digits.unshift(1);
+
+    return digits;
+};
 
 let inputs = [
     { digits:[1,2,3], output:[1,2,4] },
