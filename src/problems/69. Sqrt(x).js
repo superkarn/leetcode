@@ -11,7 +11,7 @@ var mySqrt = function(x) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = binarySearch(x);
+    let result = binarySearch2(x);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -69,6 +69,33 @@ let binarySearch = (x) => {
 
     // Should not get here
     return -1;
+};
+
+// https://leetcode.com/problems/sqrtx/discuss/25047/A-Binary-Search-Solution
+// Another binary search method with some optimizations
+// e.g. no need to calculate x^2
+let binarySearch2 = (x) => {
+    // Special case
+    if (x == 0) return 0;
+
+    let l = 0, r = x;
+
+    while (true) {
+        let m = l + Math.floor((r-l)/2);
+
+        // If m^2 > x, then we shift r
+        if (m > x/m) {
+            r = m-1;
+        } else {
+            // If (m+1)^2 > x, we found the answer
+            if (m+1 > x/(m+1)) {
+                return m;
+            }
+
+            // else we shift l
+            l = m+1;
+        }
+    }
 };
 
 let inputs = [
