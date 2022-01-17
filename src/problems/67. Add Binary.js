@@ -13,7 +13,7 @@ var addBinary = function(a, b) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(a, b);
+    let result = backward(a, b);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -75,6 +75,46 @@ let bruteForce = (a, b) => {
     }
 
     //console.log(result);
+    return result.reverse().join('');
+};
+
+let backward = (a, b) => {
+    // special cases
+    if (!a || a.length == 0 || a[0] == "0") return b;
+    if (!b || b.length == 0 || b[0] == "0") return a;
+
+    let i = a.length-1;
+    let j = b.length-1;
+    let carryOver = 0;
+    let result = [];
+
+    while (i>=0 || j>=0 || carryOver>0) {
+        let ai = a[i] ? a[i] : 0;
+        let bj = b[j] ? b[j] : 0;
+        let sum = parseInt(ai) + parseInt(bj) + carryOver;
+
+        //console.log(`  ${ai} + ${bj} + ${carryOver} = ${sum}`);
+        switch(sum) {
+            case 0:
+            case 1:
+                result.push(sum);
+                carryOver = 0;
+                break;
+            case 2:
+                result.push(0);
+                carryOver = 1;
+                break;
+            case 3:
+                result.push(1);
+                carryOver = 1;
+                break;
+        }
+
+        i--;
+        j--;
+        //console.log(result);
+    }
+
     return result.reverse().join('');
 };
 
