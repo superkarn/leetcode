@@ -50,7 +50,7 @@
 - [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
 - [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 - [139. Word Break Problem](https://leetcode.com/problems/word-break/)
-- [Combination Sum](https://leetcode.com/problems/combination-sum-iv/)
+- [377. Combination Sum](https://leetcode.com/problems/combination-sum-iv/)
 - [House Robber](https://leetcode.com/problems/house-robber/)
 - [House Robber II](https://leetcode.com/problems/house-robber-ii/)
 - [Decode Ways](https://leetcode.com/problems/decode-ways/)
