@@ -11,7 +11,7 @@ var rob = function(nums) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = dp(nums);
+    let result = dp2(nums);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -47,6 +47,25 @@ let dp = (nums) => {
     }
 
     return Math.max(...cache);
+};
+
+// Dynamic Programming, take 2 with optimized memoization
+// https://leetcode.com/problems/house-robber/discuss/156523/From-good-to-great.-How-to-approach-most-of-DP-problems.
+let dp2 = (nums) => {
+    // Special cases
+    if (nums.length == 0) return 0;
+
+    let cache1 = 0; // dp[i-1]
+    let cache2 = 0; // dp[i-2]
+
+    for (let i=0; i<nums.length; i++) {
+        let tmp = cache1;
+        cache1 = Math.max(cache2+nums[i], cache1);
+        cache2 = tmp;
+        //console.log(`  cache1 = ${cache1}, cache2 = ${cache2}`);
+    }
+
+    return cache1;
 };
 
 let inputs = [
