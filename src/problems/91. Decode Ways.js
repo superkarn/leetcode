@@ -106,10 +106,14 @@ let dp = (s) => {
     return cache[s.length];
 };
 
-//let input = "12"; // 2
-//let input = "226"; // 3
-//let input = "0"; // 0
-//let input = "06"; // 0
-let input = '11106'; // 2
 
-let output = numDecodings(input);
+let inputs = [
+    { s:"12", output:2 },
+    { s:"226", output:3 },
+    { s:"0", output:0 },
+    { s:"06", output:0 },
+    { s:"11106", output:2 },
+];
+
+// Comparing scalar output
+console.log(inputs.map(x => numDecodings(x.s) == x.output));
