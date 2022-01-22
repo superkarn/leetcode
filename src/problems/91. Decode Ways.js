@@ -11,7 +11,7 @@ var numDecodings = function(s) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = dp(s);
+    let result = dp2(s);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -106,9 +106,41 @@ let dp = (s) => {
     return cache[s.length];
 };
 
+let dp2 = (s) => {
+    // Special cases
+    if (!s || s.length == 0) return 0;
+    if (s[0] == '0') return 0;
+
+    let cache = [];
+    cache[0] = 1;
+
+    for (let i=1; i<s.length; i++) {
+        // Start off with 0
+        cache[i] = 0;
+
+        // If current number is 1-9, then the result is same as [i-1]
+        if (s[i] != '0') {
+            cache[i] += cache[i-1];
+        }
+
+        // If combined with the previous number we get 11-26
+        // Then add from cache[i-2]
+        if (s[i-1] == '1' ||
+            (s[i-1] == '2' && '0123456'.indexOf(s[i])>-1)) {
+            if (i-2 >= 0) {
+                cache[i] += cache[i-2];
+            } else {
+                cache[i] += 1;
+            }
+        }
+    }
+    
+    return cache[s.length-1];
+};
 
 let inputs = [
     { s:"12", output:2 },
+    { s:"121", output:3 },
     { s:"226", output:3 },
     { s:"0", output:0 },
     { s:"06", output:0 },
