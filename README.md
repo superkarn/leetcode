@@ -53,7 +53,7 @@
 - [377. Combination Sum](https://leetcode.com/problems/combination-sum-iv/)
 - [198. House Robber](https://leetcode.com/problems/house-robber/)
 - [213. House Robber II](https://leetcode.com/problems/house-robber-ii/)
-- [Decode Ways](https://leetcode.com/problems/decode-ways/)
+- [91. Decode Ways](https://leetcode.com/problems/decode-ways/)
 - [62. Unique Paths](https://leetcode.com/problems/unique-paths/)
 - [Jump Game](https://leetcode.com/problems/jump-game/)
 
