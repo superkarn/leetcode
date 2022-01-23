@@ -55,7 +55,7 @@
 - [213. House Robber II](https://leetcode.com/problems/house-robber-ii/)
 - [91. Decode Ways](https://leetcode.com/problems/decode-ways/)
 - [62. Unique Paths](https://leetcode.com/problems/unique-paths/)
-- [Jump Game](https://leetcode.com/problems/jump-game/)
+- [55. Jump Game](https://leetcode.com/problems/jump-game/)
 
 ### Graph
 - [Clone Graph](https://leetcode.com/problems/clone-graph/)
