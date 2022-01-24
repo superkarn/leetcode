@@ -124,6 +124,6 @@
 
 ## Extra
 ### Misc
-- [Jump Game II](https://leetcode.com/problems/jump-game-ii/)
+- [45. Jump Game II](https://leetcode.com/problems/jump-game-ii/)
 - [Jump Game III](https://leetcode.com/problems/jump-game-iii/)
 - [Jump Game VII](https://leetcode.com/problems/jump-game-vii/)
