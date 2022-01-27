@@ -13,7 +13,7 @@ var canReach = function(arr, start) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(arr, start);
+    let result = dp(arr, start);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -27,8 +27,58 @@ var canReach = function(arr, start) {
     return result;
 };
 
-// attempt1: description on the algorithm
-let bruteForce = (arr, start) => {
+// Dynamic programming
+let dp = (arr, start) => {
+    // Cache[i] tracks whether you can reach target from arr[i]
+    let cache = [];
+    return dp_recursive(arr, start, cache);
+};
+let dp_recursive = (arr, start, cache) => {
+    // Special cases
+    if (!arr) return false;
+    if (arr.length == 0) return false;
+
+    // If this index has already been looked at (i.e. has a value in the cache),
+    // and the value is true/false, then return the value.
+    if (cache[start] === false || cache[start] === true) {
+        return cache[start];
+    }
+
+    // If this index has already been looked at (i.e. has a value in the cache),
+    // and the value is -1 (meaning it hasn't finished calculating), then it's
+    // a cycle.  Return false
+    if (cache[start] === -1) {
+        cache[start] = false;
+        //console.log(`  1 [${start}](${arr[start]}) -> ${cache[start]}`);
+        return cache[start];
+    }
+
+    // If this index's value is 0, we found the target, return true
+    if (arr[start] == 0) {
+        cache[start] = true;
+        //console.log(`  2 [${start}](${arr[start]}) -> ${cache[start]}`);
+        return cache[start];
+    }
+
+    // Mark this index as being looked at
+    cache[start] = -1;
+
+    let leftIndex = start - arr[start];
+    let rightIndex = start + arr[start];
+    let leftValue = false;
+    let rightValue = false;
+
+    if (leftIndex >= 0) {
+        leftValue = dp_recursive(arr, leftIndex, cache);
+    }
+
+    if (rightIndex < arr.length) {
+        rightValue = dp_recursive(arr, rightIndex, cache);
+    }
+
+    cache[start] = leftValue || rightValue;
+    //console.log(`  3 [${start}](${arr[start]}) -> ${cache[start]}`);
+    return cache[start];
 };
 
 let inputs = [
