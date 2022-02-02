@@ -41,7 +41,6 @@ let inputs = [
 console.log(inputs.map(x => myFunction(x.param1) == x.output));
 
 // Comparing array output
-console.log(inputs.map(x => myFunction(x.param1).every((v,i) => v === x.output[i])));
 console.log(inputs.map(x => {
     let results = setZeroes(x.matrix)
     if (x.output.length != results.length) return false;
