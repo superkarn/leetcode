@@ -83,7 +83,7 @@
 - [Reorder List](https://leetcode.com/problems/reorder-list/)
 
 ### Matrix
-- [Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)
+- [73. Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)
 - [54. Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)
 - [Rotate Image](https://leetcode.com/problems/rotate-image/)
 - [Word Search](https://leetcode.com/problems/word-search/)
