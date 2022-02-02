@@ -145,4 +145,12 @@ let inputs = [
 ];
 
 // Comparing 2D array output
-console.log(inputs.map(x => setZeroes(x.matrix).every((v,i) => v.every((v2,i2) => v2 === x.output[i][i2]))));
+console.log(inputs.map(x => {
+    let results = setZeroes(x.matrix)
+    if (x.output.length != results.length) return false;
+
+    return results.every((v,i) => {
+        if (v.length != x.output[i].length) return false;
+        return v.every((v2,i2) => v2 === x.output[i][i2])
+    });
+}));
