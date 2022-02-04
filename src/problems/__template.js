@@ -41,14 +41,8 @@ let inputs = [
 console.log(inputs.map(x => myFunction(x.param1) == x.output));
 
 // Comparing array output
-console.log(inputs.map(x => {
-    let results = myFunction(x.matrix)
-    if (x.output.length != results.length) return false;
+console.log(inputs.map(x => myFunction(x.param1).every((v,i) => v === x.output[i])));
 
-    return v === x.output[i];
-}));
-
-// Comparing 2D array output
 // Comparing 2D array output
 console.log(inputs.map(x => {
     let results = myFunction(x.matrix)
