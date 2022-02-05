@@ -27,13 +27,22 @@ var convertToTitle = function(columnNumber) {
 
 // attempt1: description on the algorithm
 let bruteForce = (columnNumber) => {
-    let result = columnNumber;
+    const ALPHABETS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    let result = [];
 
-    return result;
+    while (columnNumber > 0) {
+        result.push(ALPHABETS[(columnNumber-1) % ALPHABETS.length]);
+        columnNumber = Math.floor((columnNumber - 1)/ALPHABETS.length);
+    }
+
+    return result.reverse().join('');
 };
 
 let inputs = [
     { columnNumber:1, output:'A' },
+    { columnNumber:25, output:'Y' },
+    { columnNumber:26, output:'Z' },
+    { columnNumber:27, output:'AA' },
     { columnNumber:28, output:'AB' },
     { columnNumber:701, output:'ZY' },
 ];
