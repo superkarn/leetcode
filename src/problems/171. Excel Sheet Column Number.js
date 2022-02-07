@@ -27,15 +27,29 @@ var titleToNumber = function(columnTitle) {
 
 // attempt1: description on the algorithm
 let bruteForce = (columnTitle) => {
-    let result = columnTitle;
+    const ALPHABETS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+    let result = 0;
+
+    for (let i=columnTitle.length-1; i>=0; i--) {
+        let val = ALPHABETS.indexOf(columnTitle[i]);
+
+        if (val == -1) {
+            throw `${columnTitle[i]} at ${i} is not a valid character`;
+        }
+        
+        result += (val+1) * Math.pow(ALPHABETS.length,columnTitle.length-1-i);
+    }
 
     return result;
 };
 
 let inputs = [
     { columnTitle:"A", output:1 },
+    { columnTitle:"Y", output:25 },
+    { columnTitle:"Z", output:26 },
     { columnTitle:"AB", output:28 },
-    { columnTitle:"zy", output:701 },
+    { columnTitle:"ZY", output:701 },
 ];
 
 // Comparing scalar output
