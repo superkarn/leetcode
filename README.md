@@ -1,5 +1,6 @@
 # leetcode
-- [Useful Algorithms and Techniques](#useful-algorithms-and-techniques)
+- [Useful Algorithms](#useful-algorithms)
+- [Useful Techniques](#useful-techniques)
 - [Blind's Top 75 Questions](#blind-s-top-75-questions)
   * [Array](#array)
   * [Binary](#binary)
@@ -19,8 +20,14 @@
 - [Kadane's Algorithm](https://en.wikipedia.org/wiki/Maximum_subarray_problem#Kadane's_algorithm) for maximum subarray problems.
 - [KMP Pattern Searching](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm) ([Geeks for Geeks](https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/))
 - [Patience Sorting](https://en.wikipedia.org/wiki/Patience_sorting) for longest increasing subsequence in an array. ([Geeks for Geeks](https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/))
-- Sliding Window ([Geeks for Geeks](https://www.geeksforgeeks.org/window-sliding-technique/))
 - Z algorithm for linear pattern searching.  ([Geeks for Geeks](https://www.geeksforgeeks.org/z-algorithm-linear-time-pattern-searching-algorithm/))
+
+## Useful Techniques
+- Divide and Conquer
+- Dynamic Programming ([Geeks for Geeks](https://www.geeksforgeeks.org/dynamic-programming/))
+- Greedy Algorithm
+- Sliding Window ([Geeks for Geeks](https://www.geeksforgeeks.org/window-sliding-technique/))
+- Two Pointers ([Geeks for Geeks](https://www.geeksforgeeks.org/two-pointers-technique/))
 
 
 ## Blind's Top 75 Questions
