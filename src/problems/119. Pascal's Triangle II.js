@@ -11,7 +11,7 @@ var getRow = function(rowIndex) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(rowIndex);
+    let result = formula(rowIndex);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -25,9 +25,16 @@ var getRow = function(rowIndex) {
     return result;
 };
 
-// attempt1: description on the algorithm
-let bruteForce = (rowIndex) => {
+// https://www.geeksforgeeks.org/find-the-nth-row-in-pascals-triangle
+// Using formula: NCr = ((NCr - 1) * (N - r + 1)) / r
+let formula = (rowIndex) => {
     let result = [1];
+
+    for (let i=1; i<=rowIndex; i++) {
+        let val = (result[i-1] * (rowIndex - i + 1)) / i;
+        result.push(val);
+    }
+
     return result;
 };
 
