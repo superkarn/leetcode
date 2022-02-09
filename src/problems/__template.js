@@ -40,16 +40,5 @@ let inputs = [
 // Comparing scalar output
 console.log(inputs.map(x => myFunction(x.param1) == x.output));
 
-// Comparing array output
-console.log(inputs.map(x => myFunction(x.param1).every((v,i) => v === x.output[i])));
-
-// Comparing 2D array output
-console.log(inputs.map(x => {
-    let results = myFunction(x.matrix)
-    if (x.output.length != results.length) return false;
-
-    return results.every((v,i) => {
-        if (v.length != x.output[i].length) return false;
-        return v.every((v2,i2) => v2 === x.output[i][i2])
-    });
-}));
+// Comparing array/object output
+console.log(inputs.map(x => JSON.stringify(myFunction(x.param1)) === JSON.stringify(x.output)));
