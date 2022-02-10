@@ -18,15 +18,8 @@ for (let i = 0; i<length1; i++) {
         data[i][j] = 0;
     }
 }
-```
 
-### Print
-```javascript
-let print2DArray = (a) => {
-    let result = '\r\n';
-    for (let i = 0; i<a.length; i++) {
-        result += a[i] + "\r\n";
-    }
-    return result;
-};
+// Or use MatrixHelper
+let data = [];
+MatrixHelper.fill(data, 4, 3, 'defaultValue');
 ```
