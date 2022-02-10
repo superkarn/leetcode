@@ -35,12 +35,7 @@ let bruteForce = (s,t) => {
     s = s.split('').sort().join('');
     t = t.split('').sort().join('');
 
-    for (let i=0; i<s.length; i++) {
-        //console.log(`${s[i]} vs ${t[i]}`);
-        if (s[i] != t[i]) return false;
-    }
-
-    return true;
+    return s === t;
 };
 
 // Keep track of the frequencies of each letter in s,
