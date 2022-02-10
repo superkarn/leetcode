@@ -1,10 +1,15 @@
 const MatrixHelper = require('../../src/utils/matrixHelper');
+const each = require('jest-each').default;
 
 describe('MatrixHelper class', () => {
 
-    test('Filling a matrix with a default value', (matrix, m, n, val)  => {
+    each([
+        [[], 3, 3, 0],
+        [[], 3, 4, -1],
+        [[], 4, 3, null]
+    ]).test('Filling a matrix with a default value', (matrix, m, n, val)  => {
         // Arrange
-        let matrix = [], m = 4, n = 4, val = -1;
+        // See parameters
     
         // Act
         MatrixHelper.fill(matrix, m, n, val);
