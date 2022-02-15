@@ -11,7 +11,7 @@ var containsDuplicate = function(nums) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(nums);
+    let result = usingSet(nums);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -26,7 +26,7 @@ var containsDuplicate = function(nums) {
 };
 
 // bruteForce: loop through all the combinations
-let bruteForce = (nums) => {
+let usingSort = (nums) => {
     // sort the array
     nums.sort((a,b) => a-b);
 
@@ -40,9 +40,17 @@ let bruteForce = (nums) => {
     return false;
 };
 
-//let input = [1,2,3,1];
-//let input = [1,2,3,4];
-let input = [1,1,1,3,3,4,3,2,4,2];
+let usingSet = (nums) => {
+    let s = new Set(nums);
+    return nums.length != s.size;
+};
 
-let output = containsDuplicate(input);
-console.log(output);
+
+let inputs = [
+    { nums:[1,2,3,1], output:true },
+    { nums:[1,2,3,4], output:false },
+    { nums:[1,1,1,3,3,4,3,2,4,2], output:true },
+];
+
+// Comparing scalar output
+console.log(inputs.map(x => containsDuplicate(x.nums) == x.output));
