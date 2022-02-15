@@ -11,7 +11,7 @@ var isValid = function(s) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = stack(s);
+    let result = stack2(s);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -63,6 +63,32 @@ let stack = (s) => {
     }
 
     // At the end, there should not be anything left in the stack
+    return stack.length == 0;
+};
+
+// optimized
+// https://leetcode.com/problems/valid-parentheses/discuss/9178/Short-java-solution
+let stack2 = (s) => {
+    if (!s || s.length == 0) {
+        return true;
+    }
+
+    const OPEN_BRACKETS = '({[';
+    const CLOSE_BRACKETS = ')}]';
+
+    let stack = [];
+
+    for (let i=0; i<s.length; i++) {
+        //console.log(`  ${i}: ${stack}`);
+        if (OPEN_BRACKETS.indexOf(s[i]) > -1) {
+            // Push the matching close bracket into the stack
+            stack.push(CLOSE_BRACKETS[OPEN_BRACKETS.indexOf(s[i])]);
+        } 
+        else if (stack.length<=0 || stack.pop() != s[i]) {
+            return false;
+        }
+    }
+
     return stack.length == 0;
 };
 
