@@ -11,7 +11,7 @@ var longestPalindrome = function(s) {
 
     // Pick the algorithm
     console.log('--Logs-------------------');
-    let result = checkFromMiddle(s);
+    let result = checkFromMiddle2(s);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -114,6 +114,44 @@ let expand = (s, l, r, result, resultLength) => {
     }
 
     return resultObject;
+};
+
+let checkFromMiddle2 = (s) => {
+    let result = '';
+    let l=0, r=0;
+
+    for (let i=0; i<s.length; i++) {
+        //console.log(`  ${i}-----`);
+
+        // Odd length
+        l=i, r=i;
+        while (0<=l && r<s.length && s[l]==s[r]) {
+            //console.log(`    ${l} to ${r}`);
+            // Found a longer palindrome
+            if ((r-l+1) > result.length) {
+                result = s.substring(l, r+1);
+                //console.log(`      found ${result}`);
+            }
+            l--;
+            r++;
+        }
+
+        // Even length, same code as odd, but different starting l,r
+        l=i, r=i+1;
+        while (0<=l && r<s.length && s[l]==s[r]) {
+            //console.log(`    ${l} to ${r}`);
+            // Found a longer palindrome
+            if ((r-l+1) > result.length) {
+                result = s.substring(l, r+1);
+                //console.log(`      found ${result}`);
+            }
+            l--;
+            r++;
+        }
+
+    }
+
+    return result;
 };
 
 
