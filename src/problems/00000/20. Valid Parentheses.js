@@ -66,9 +66,13 @@ let stack = (s) => {
     return stack.length == 0;
 };
 
-//let input = "()"; // true
-//let input = "()[]{}"; // true
-//let input = "(]"; // false
-let input = "()[[][{}]]{}"; // false
+let inputs = [
+    { s:"()", output:true },
+    { s:"()[]{}", output:true },
+    { s:"(])", output:false },
+    { s:"()[[][{}]]{}", output:true },
+    { s:"()[[][}]]{}", output:false },
+];
 
-let output = isValid(input);
+// Comparing scalar output
+console.log(inputs.map(x => isValid(x.s) == x.output));
