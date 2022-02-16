@@ -20,7 +20,7 @@ var reverseList = function(head) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(head);
+    let result = twoPointers(head);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -51,6 +51,23 @@ let bruteForce = (head) => {
             head.next.next = null;
         }
     }
+    return head;
+};
+
+// https://leetcode.com/problems/reverse-linked-list/discuss/1449712
+let twoPointers = (head) => {
+    let current = head;
+    let next = current?.next;
+    let previous = null;
+
+    while (current != null) {
+        next = current.next;
+        current.next = previous;
+        previous = current;
+        current = next;
+    }
+
+    head = previous;
     return head;
 };
 
