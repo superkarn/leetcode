@@ -11,7 +11,7 @@ var fib = function(n) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = recursive(n);
+    let result = iterative(n);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -36,7 +36,25 @@ let recursive = (n) => {
     return memoization[n-1] + memoization[n-2];
 };
 
+// https://leetcode.com/problems/fibonacci-number/discuss/215992/Java-Solutions
+let iterative = (n) => {
+    // Special cases
+    if (n<2) return n;
+
+    let a=0, b=1;
+
+    for (let i=2; i<=n; i++) {
+        let sum = a+b;
+        a = b;
+        b = sum;
+    }
+
+    return b
+};
+
 let inputs = [
+    { n:0, output:0 },
+    { n:1, output:1 },
     { n:2, output:1 },
     { n:3, output:2 },
     { n:4, output:3 },
