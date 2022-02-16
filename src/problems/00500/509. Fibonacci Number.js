@@ -26,14 +26,14 @@ var fib = function(n) {
 };
 
 // attempt1: description on the algorithm
-let memoization = {};
+let cache = {};
 let recursive = (n) => {
     if (n <= 1) return n;
 
-    if (!memoization[n-1]) memoization[n-1] = recursive(n-1);
-    if (!memoization[n-2]) memoization[n-2] = recursive(n-2);
+    if (!cache[n-1]) cache[n-1] = recursive(n-1);
+    if (!cache[n-2]) cache[n-2] = recursive(n-2);
 
-    return memoization[n-1] + memoization[n-2];
+    return cache[n-1] + cache[n-2];
 };
 
 // https://leetcode.com/problems/fibonacci-number/discuss/215992/Java-Solutions
