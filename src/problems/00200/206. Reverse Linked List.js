@@ -1,3 +1,5 @@
+let LinkedListHelper = require('../../utils/linkedListHelper');
+
 // https://leetcode.com/problems/reverse-linked-list/
 /**
  * Definition for singly-linked list.
@@ -34,16 +36,29 @@ var reverseList = function(head) {
 
 // attempt1: description on the algorithm
 let bruteForce = (head) => {
-    let result = head;
+    let next = head?.next;
 
-    return result;
+    while (next != null) {
+        let n2 = next.next;
+        let h2 = head;
+
+        head = next;
+        head.next = h2;
+        next = n2;
+        
+        // Special case the first node
+        if (head?.next?.next == head) {
+            head.next.next = null;
+        }
+    }
+    return head;
 };
 
 let inputs = [
     { head:[1,2,3,4,5], output:[5,4,3,2,1] },
     { head:[1,2], output:[2,1] },
-    { head:[], output:[1] },
+    { head:[], output:[] },
 ];
 
 // Comparing array/object output
-console.log(inputs.map(x => JSON.stringify(reverseList(x.head)) === JSON.stringify(x.output)));
+console.log(inputs.map(x => JSON.stringify(reverseList(LinkedListHelper.fromArray(x.head))) === JSON.stringify(LinkedListHelper.fromArray(x.output))));
