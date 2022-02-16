@@ -36,11 +36,17 @@ let recursive = (n) => {
     return memoization[n-1] + memoization[n-2];
 };
 
-//let input = 2; // 1
-//let input = 3; // 2
-//let input = 4; // 3
-//let input = 5; // 5
-let input = 10; // 55
-//let input = 45; // 1836311903
+let inputs = [
+    { n:2, output:1 },
+    { n:3, output:2 },
+    { n:4, output:3 },
+    { n:5, output:5 },
+    { n:10, output:55 },
+    { n:20, output:6765 },
+    { n:30, output:832040 },
+    { n:40, output:102334155 },
+    { n:45, output:1134903170 },
+];
 
-let output = fib(input);
+// Comparing scalar output
+console.log(inputs.map(x => fib(x.n) == x.output));
