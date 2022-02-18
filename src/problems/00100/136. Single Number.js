@@ -27,9 +27,20 @@ var singleNumber = function(nums) {
 
 // attempt1: description on the algorithm
 let bruteForce = (nums) => {
-    let result = nums;
+    let frequencies = {};
 
-    return result;
+    // Set each number count to 2
+    for (let i=0; i<nums.length; i++) {
+        frequencies[nums[i]] = 2;
+    }
+
+    // Decrement each number
+    for (let i=0; i<nums.length; i++) {
+        frequencies[nums[i]]--;
+    }
+
+    // The one with > 0 count is the result
+    return Object.keys(frequencies).find(key => frequencies[key] > 0);
 };
 
 let inputs = [
