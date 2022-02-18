@@ -21,7 +21,7 @@ var hasCycle = function(head) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(head);
+    let result = tracking(head);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -36,7 +36,7 @@ var hasCycle = function(head) {
 };
 
 // attempt1: loop through the list and mark each node we've already visited
-let bruteForce = (head) => {
+let tracking = (head) => {
     // Special case
     if (head == null) return false;
 
@@ -48,6 +48,29 @@ let bruteForce = (head) => {
         current = current.next;
 
         if (current.visited) return true;
+    }
+
+    return false;
+};
+
+
+// https://leetcode.com/problems/linked-list-cycle/discuss/44489/O(1)-Space-Solution
+// Use 2 pointers, traversing the list at different speed.
+// If there is a cycle, they will eventually meet up.
+let twoPointers = (head) => {
+    // Special case
+    if (head == null) return false;
+
+    let slow = head;
+    let fast = head;
+
+    while (fast.next && fast.next.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+
+        console.log(`  s: ${slow.val}, f: ${fast.val}`);
+
+        if (slow == fast) return true;
     }
 
     return false;
