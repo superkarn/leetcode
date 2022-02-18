@@ -37,6 +37,20 @@ var hasCycle = function(head) {
 
 // attempt1: loop through the list and mark each node we've already visited
 let bruteForce = (head) => {
+    // Special case
+    if (head == null) return false;
+
+    let current = head;
+
+    while (current.next != null) {
+        //console.log(`  checking ${current.val} -> ${current.next.val}`);
+        current.visited = true;
+        current = current.next;
+
+        if (current.visited) return true;
+    }
+
+    return false;
 };
 
 let inputs = [
