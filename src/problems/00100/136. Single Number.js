@@ -11,7 +11,7 @@ var singleNumber = function(nums) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(nums);
+    let result = xor(nums);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -41,6 +41,19 @@ let bruteForce = (nums) => {
 
     // The one with > 0 count is the result
     return Object.keys(frequencies).find(key => frequencies[key] > 0);
+};
+
+// https://leetcode.com/problems/single-number/discuss/42997/My-O(n)-solution-using-XOR
+// Use XOR bit-wise operation.  Each number that XOR twice will get nulled out,
+// leaving the lone single number.
+let xor = (nums) => {
+    let result = 0;
+
+    for (let i=0; i<nums.length; i++) {
+        result ^= nums[i];
+    }
+
+    return result;
 };
 
 let inputs = [
