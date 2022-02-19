@@ -11,7 +11,7 @@ var singleNumber = function(nums) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = xor(nums);
+    let result = math(nums);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -54,6 +54,19 @@ let xor = (nums) => {
     }
 
     return result;
+};
+
+// Get all the distinct values.  
+// Double the sum.  
+// Subtract the sum of the original.
+// The diff should be the lone
+let math = (nums) => {
+    let sum = nums.reduce((prev, curr) => prev + curr, 0);
+
+    let unique = new Set(nums);
+    let sum2x = 2 * [...unique].reduce((prev, curr) => prev + curr, 0);
+
+    return sum2x - sum;
 };
 
 let inputs = [
