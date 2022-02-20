@@ -1,3 +1,6 @@
+let ListNode = require('../../models/ListNode');
+let LinkedListHelper = require('../../utils/linkedListHelper');
+
 // https://leetcode.com/problems/merge-two-sorted-lists/
 /**
  * Definition for singly-linked list.
@@ -20,7 +23,7 @@ var mergeTwoLists = function(list1, list2) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = recursion(list1, list2);
+    let result = iterative(list1, list2);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -32,32 +35,6 @@ var mergeTwoLists = function(list1, list2) {
     console.log('--------------------------');
 
     return result;
-};
-
-function ListNode(val, next) {
-    this.val = (val===undefined ? 0 : val)
-    this.next = (next===undefined ? null : next)
-
-    this.toString = () => {
-        let str = `${this.val}`;
-        let n = this.next;
-
-        if (n) {
-            while (n.next) {
-                str += `, ${n.val}`;
-                n = n.next;
-            }
-
-            // The last node            
-            str += `, ${n.val}`;
-        }
-        return str;
-    }
-}
-    
-// https://stackoverflow.com/a/63599046/1398750
-let convertArrayToLinkedList = (a) => {
-    return a.reverse().reduce((acc, curr) => new ListNode(curr, acc), null);
 };
 
 // attempt1: description on the algorithm
@@ -116,6 +93,41 @@ let bruteForce = (list1, list2) => {
     return result.next;
 };
 
+// https://www.youtube.com/watch?v=XIdigk956u0
+let iterative = (list1, list2) => {
+    let dummy = new ListNode();
+    let tail = dummy;
+
+    // Loop until one of the lists runs out
+    while (list1 && list2) {
+        // If list1 node is less than list2 node, 
+        // append list1 node to the result.
+        if (list1.val <= list2.val) {
+            tail.next = list1;
+            list1 = list1.next;
+        } 
+        // Else append list2 node
+        else {
+            tail.next = list2;
+            list2 = list2.next;
+        }
+
+        // Move the tail to the next node
+        tail = tail.next;
+    }
+
+    // If list1 has items left, append the rest to the result
+    if (list1) {
+        tail.next = list1;
+    } 
+    // If list2 has items left, append the rest to the result
+    else if (list2) {
+        tail.next = list2
+    }
+
+    return dummy.next;
+};
+
 let recursion = (list1, list2) => {
     if (!list1) return list2;
     if (!list2) return list1;
@@ -129,11 +141,14 @@ let recursion = (list1, list2) => {
     }
 };
 
-//let list1 = [1,2,4], list2 = [1,3,4]; // [1,1,2,3,4,4]
-//let list1 = [1,3], list2 = [2,4]; // [1,2,3,4]
-let list1 = [1,2,6,6,7,8], list2 = [1,3,4,5]; // [1,1,2,3,4,5,6,6,7,8]
-//let list1 = [], list2 = []; // []
-//let list1 = [], list2 = [0]; // [0]
-//let list1 = [1], list2 = []; // [1]
+let inputs = [
+    { list1:[1,2,4], list2:[1,3,4], output:[1,1,2,3,4,4] },
+    { list1:[1,3], list2:[2,4], output:[1,2,3,4] },
+    { list1:[1,2,6,6,7,8], list2:[1,3,4,5], output:[1,1,2,3,4,5,6,6,7,8] },
+    { list1:[], list2:[], output:[] },
+    { list1:[], list2:[0], output:[0] },
+    { list1:[1], list2:[], output:[1] },
+];
 
-let output = mergeTwoLists(convertArrayToLinkedList(list1), convertArrayToLinkedList(list2));
+// Comparing array/object output
+console.log(inputs.map(x => JSON.stringify(mergeTwoLists(LinkedListHelper.fromArray(x.list1), LinkedListHelper.fromArray(x.list2))) === JSON.stringify(LinkedListHelper.fromArray(x.output))));
