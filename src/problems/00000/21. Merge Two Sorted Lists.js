@@ -23,7 +23,7 @@ var mergeTwoLists = function(list1, list2) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = recursion(list1, list2);
+    let result = iterative(list1, list2);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -91,6 +91,41 @@ let bruteForce = (list1, list2) => {
     }
 
     return result.next;
+};
+
+// https://www.youtube.com/watch?v=XIdigk956u0
+let iterative = (list1, list2) => {
+    let dummy = new ListNode();
+    let tail = dummy;
+
+    // Loop until one of the lists runs out
+    while (list1 && list2) {
+        // If list1 node is less than list2 node, 
+        // append list1 node to the result.
+        if (list1.val <= list2.val) {
+            tail.next = list1;
+            list1 = list1.next;
+        } 
+        // Else append list2 node
+        else {
+            tail.next = list2;
+            list2 = list2.next;
+        }
+
+        // Move the tail to the next node
+        tail = tail.next;
+    }
+
+    // If list1 has items left, append the rest to the result
+    if (list1) {
+        tail.next = list1;
+    } 
+    // If list2 has items left, append the rest to the result
+    else if (list2) {
+        tail.next = list2
+    }
+
+    return dummy.next;
 };
 
 let recursion = (list1, list2) => {
