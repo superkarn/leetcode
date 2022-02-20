@@ -1,3 +1,6 @@
+let ListNode = require('../../models/ListNode');
+let LinkedListHelper = require('../../utils/linkedListHelper');
+
 // https://leetcode.com/problems/merge-two-sorted-lists/
 /**
  * Definition for singly-linked list.
@@ -32,32 +35,6 @@ var mergeTwoLists = function(list1, list2) {
     console.log('--------------------------');
 
     return result;
-};
-
-function ListNode(val, next) {
-    this.val = (val===undefined ? 0 : val)
-    this.next = (next===undefined ? null : next)
-
-    this.toString = () => {
-        let str = `${this.val}`;
-        let n = this.next;
-
-        if (n) {
-            while (n.next) {
-                str += `, ${n.val}`;
-                n = n.next;
-            }
-
-            // The last node            
-            str += `, ${n.val}`;
-        }
-        return str;
-    }
-}
-    
-// https://stackoverflow.com/a/63599046/1398750
-let convertArrayToLinkedList = (a) => {
-    return a.reverse().reduce((acc, curr) => new ListNode(curr, acc), null);
 };
 
 // attempt1: description on the algorithm
@@ -129,11 +106,14 @@ let recursion = (list1, list2) => {
     }
 };
 
-//let list1 = [1,2,4], list2 = [1,3,4]; // [1,1,2,3,4,4]
-//let list1 = [1,3], list2 = [2,4]; // [1,2,3,4]
-let list1 = [1,2,6,6,7,8], list2 = [1,3,4,5]; // [1,1,2,3,4,5,6,6,7,8]
-//let list1 = [], list2 = []; // []
-//let list1 = [], list2 = [0]; // [0]
-//let list1 = [1], list2 = []; // [1]
+let inputs = [
+    { list1:[1,2,4], list2:[1,3,4], output:[1,1,2,3,4,4] },
+    { list1:[1,3], list2:[2,4], output:[1,2,3,4] },
+    { list1:[1,2,6,6,7,8], list2:[1,3,4,5], output:[1,1,2,3,4,5,6,6,7,8] },
+    { list1:[], list2:[], output:[] },
+    { list1:[], list2:[0], output:[0] },
+    { list1:[1], list2:[], output:[1] },
+];
 
-let output = mergeTwoLists(convertArrayToLinkedList(list1), convertArrayToLinkedList(list2));
+// Comparing array/object output
+console.log(inputs.map(x => JSON.stringify(mergeTwoLists(LinkedListHelper.fromArray(x.list1), LinkedListHelper.fromArray(x.list2))) === JSON.stringify(LinkedListHelper.fromArray(x.output))));
