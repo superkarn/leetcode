@@ -23,7 +23,7 @@ var removeNthFromEnd = function(head, n) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(head, n);
+    let result = reverse(head, n);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -31,24 +31,50 @@ var removeNthFromEnd = function(head, n) {
     console.log('Total time: ', endTime - startTime);
 
     console.log('--Result------------------');
-    console.log(result);
+    console.log(LinkedListHelper.toArray(result));
     console.log('--------------------------');
 
     return result;
 };
 
-// attempt1: description on the algorithm
-let bruteForce = (head, n) => {
-    let result = head
+// Reverse the list, remove the (n-1)th node, reverse back
+let reverse = (head, n) => {
+    //console.log(`  before: `, LinkedListHelper.toString(head));
 
-    return result;
+    head = LinkedListHelper.reverse(head);
+    //console.log(`  after: `, LinkedListHelper.toString(head));
+
+    head = removeNthNode(head, n-1);
+
+    head = LinkedListHelper.reverse(head);
+    //console.log(`  result: `, LinkedListHelper.toArray(head));
+
+    return head;
+};
+let removeNthNode = (head, n) => {
+    // Special case
+    if (n==0) return head.next;
+
+    // nodeBeforeRemove is the node before the one we want to remove
+    let nodeBeforeRemove = head;
+    for (let i=0; i<n-1; i++) {
+        nodeBeforeRemove = nodeBeforeRemove.next;
+    }
+    nodeBeforeRemove.next = nodeBeforeRemove?.next?.next;
+
+    return head;
 };
 
 let inputs = [
-    { head:[1,2,3,4,5], n:2, output:[1,2,3,5] },
     { head:[1], n:1, output:[] },
     { head:[1,2], n:1, output:[1] },
+    { head:[1,2,3], n:1, output:[1,2] },
+    { head:[1,2,3,4], n:1, output:[1,2,3] },
+    { head:[1,2,3,4,5], n:1, output:[1,2,3,4] },
+    { head:[1,2,3,4,5], n:2, output:[1,2,3,5] },
+    { head:[1,2,3,4,5], n:3, output:[1,2,4,5] },
+    { head:[1,2,3,4,5,6,7,8], n:8, output:[2,3,4,5,6,7,8] },
 ];
 
 // Comparing array/object output
-console.log(inputs.map(x => JSON.stringify(removeNthFromEnd(x.head, x.n)) === JSON.stringify(x.output)));
+console.log(inputs.map(x => JSON.stringify(removeNthFromEnd(LinkedListHelper.fromArray(x.head), x.n)) === JSON.stringify(LinkedListHelper.fromArray(x.output))));
