@@ -23,7 +23,7 @@ var removeNthFromEnd = function(head, n) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = reverse(head, n);
+    let result = twoPointers(head, n);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -63,6 +63,34 @@ let removeNthNode = (head, n) => {
     nodeBeforeRemove.next = nodeBeforeRemove?.next?.next;
 
     return head;
+};
+
+// https://leetcode.com/problems/remove-nth-node-from-end-of-list/discuss/8804/Simple-Java-solution-in-one-pass
+// Set 2 pointers, one is n+1 ahead of the other one.
+// Move both at the same speed.  When the front gets to the end,
+// the back is n+1 away from the end.  
+// Then we can set back.next to skip the desired node.
+let twoPointers = (head, n) => {
+    let start = new ListNode();
+    start.next = head;
+    let front = start;
+    let back = start;
+
+    // Move front n+1 nodes ahead.
+    for (let i=0; i<n+1; i++) {
+        front = front.next;
+    }
+
+    // Move both together until front hits the end
+    while (front) {
+        front = front.next;
+        back = back.next;
+    }
+
+    // Remove the desired node
+    back.next = back.next.next;
+
+    return start.next;
 };
 
 let inputs = [
