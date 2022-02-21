@@ -13,7 +13,7 @@ var containsNearbyDuplicate = function(nums, k) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(nums);
+    let result = bruteForce(nums, k);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -27,11 +27,18 @@ var containsNearbyDuplicate = function(nums, k) {
     return result;
 };
 
-// attempt1: description on the algorithm
+// Use brute force and check all numbers via nested loops
 let bruteForce = (nums, k) => {
-    let result = nums;
+    for (let i=0; i<nums.length; i++) {
+        for (let j=i+1; j<nums.length; j++) {
+            //console.log(`  [${i}](${nums[i]}) vs [${j}](${nums[j]}) <= ? ${k}`);
+            if ((nums[i] == nums[j]) && Math.abs(i-j) <= k) {
+                return true;
+            }
+        }
+    }
 
-    return result;
+    return false;
 };
 
 let inputs = [
