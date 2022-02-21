@@ -19,6 +19,21 @@ describe('LinkedListHelper class', () => {
         expect(JSON.stringify(result)).toBe(JSON.stringify(expected));
     });
 
+    test.each([
+        {expected:[], head:null},
+        {expected:[1], head:new ListNode(1, null)},
+        {expected:[1,2], head:new ListNode(1, new ListNode(2, null))},
+        {expected:[1,2,3], head:new ListNode(1, new ListNode(2,  new ListNode(3, null)))},
+    ])('LinkedListHelper.toArray()', ({head, expected})  => {
+        // Arrange
+    
+        // Act
+        let result = LinkedListHelper.toArray(head);
+    
+        // Assert
+        expect(JSON.stringify(result)).toBe(JSON.stringify(expected));
+    });
+
     
     test.each([
         {head:[], expected:""},
