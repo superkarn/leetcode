@@ -2,7 +2,6 @@ const ListNode = require('../../src/models/ListNode');
 const LinkedListHelper = require('../../src/utils/linkedListHelper');
 
 describe('LinkedListHelper class', () => {
-
     
     test.each([
         {head:[], expected:null},
@@ -35,10 +34,10 @@ describe('LinkedListHelper class', () => {
     });
 
     test.each([
-        {expected:[], head:null},
-        {expected:[1], head:new ListNode(1, null)},
-        {expected:[1,2], head:new ListNode(1, new ListNode(2, null))},
-        {expected:[1,2,3], head:new ListNode(1, new ListNode(2,  new ListNode(3, null)))},
+        {head:null, expected:[]},
+        {head:new ListNode(1, null), expected:[1]},
+        {head:new ListNode(1, new ListNode(2, null)), expected:[1,2]},
+        {head:new ListNode(1, new ListNode(2,  new ListNode(3, null))), expected:[1,2,3]},
     ])('LinkedListHelper.toArray()', ({head, expected})  => {
         // Arrange
     
