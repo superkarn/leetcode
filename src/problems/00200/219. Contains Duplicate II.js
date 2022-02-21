@@ -13,7 +13,7 @@ var containsNearbyDuplicate = function(nums, k) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(nums, k);
+    let result = slidingWindow(nums, k);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -35,6 +35,29 @@ let bruteForce = (nums, k) => {
                 return true;
             }
         }
+    }
+
+    return false;
+};
+
+// Use sliding window.  Each time the window moves, 
+// remove the first number from the set.  Then try to add the new
+// number.  If the set size grows, then the new number is not 
+// a duplicate.  Continue until the end.
+let slidingWindow = (nums, k) => {
+    let s = new Set();
+
+    for (let i=0; i<nums.length; i++) {
+        // Remove the number that went outside the window
+        if (i>k) {
+            s.delete(nums[i-k-1]);
+        }
+
+        // If the set has the new number, then it's a duplicate
+        if (s.has(nums[i])) return true;
+
+        // If not, then add it to the set
+        s.add(nums[i]);
     }
 
     return false;
