@@ -4,6 +4,22 @@ const LinkedListHelper = require('../../src/utils/linkedListHelper');
 describe('LinkedListHelper class', () => {
 
     test.each([
+        {head:new ListNode(1, null), n:0, expected:null},
+        {head:new ListNode(1, new ListNode(2, null)), n:0, expected:new ListNode(2, null)},
+        {head:new ListNode(1, new ListNode(2,  new ListNode(3, null))), n:0, expected:new ListNode(2, new ListNode(3,  null))},
+        {head:new ListNode(1, new ListNode(2,  new ListNode(3, null))), n:1, expected:new ListNode(1, new ListNode(3,  null))},
+        {head:new ListNode(1, new ListNode(2,  new ListNode(3, new ListNode(4, null)))), n:3, expected:new ListNode(1, new ListNode(2,  new ListNode(3,  null)))},
+    ])('LinkedListHelper.removeNthNode()', ({head, n, expected})  => {
+        // Arrange
+    
+        // Act
+        let result = LinkedListHelper.removeNthNode(head, n);
+    
+        // Assert
+        expect(JSON.stringify(result)).toBe(JSON.stringify(expected));
+    });
+
+    test.each([
         {head:new ListNode(1, null), n:1, expected:null},
         {head:new ListNode(1, new ListNode(2, null)), n:1, expected:new ListNode(1, null)},
         {head:new ListNode(1, new ListNode(2,  new ListNode(3, null))), n:1, expected:new ListNode(1, new ListNode(2,  null))},
