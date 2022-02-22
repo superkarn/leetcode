@@ -29,14 +29,32 @@ var findMaxAverage = function(nums, k) {
 
 // attempt1: description on the algorithm
 let slidingWindow = (nums, k) => {
-    let result = nums;
+    let l = 0;
+    let r = l+k;
+    let sum = nums.slice(l,r).reduce((prev, curr) => prev+curr, 0);
+    let maxSum = sum;
+    //console.log(`  [${l}:${r}] -> [${nums.slice(l,r)}] -> sum:${sum} / maxSum:${maxSum}`);
 
-    return result;
+    for (l=1; l<=nums.length-k; l++) {
+        r = l+k;
+        
+        // Remove the previous item from sum
+        sum -= nums[l-1];
+
+        // Add the next item to sum
+        sum += nums[r-1];
+
+        maxSum = Math.max(maxSum, sum);
+        //console.log(`  [${l}:${r}] -> [${nums.slice(l,r)}] -> sum:${sum} / maxSum:${maxSum}`);
+    };
+
+    return maxSum/k;
 };
 
 let inputs = [
     { nums:[1,12,-5,-6,50,3], k:4, output:12.75 },
     { nums:[5], k:1, output:5.0 },
+    { nums:[-1], k:1, output:-1.0 },
 ];
 
 // Comparing scalar output
