@@ -48,32 +48,25 @@ let bruteForce = (head) => {
 // 2. Reverse the list of the 2nd list
 // 3. Merge first and second lists
 let threeSteps = (head) => {
-    console.log(`1: ${LinkedListHelper.toString(head)}`);
 
     // 1. Find mid point
     // Using slow/fast pointers.  
     let slow = head;
     let fast = head.next;
-    while (slow && fast) {
-        console.log(`  slow: ${slow.val}`);
-        console.log(`  fast: ${fast.val}`);
-
+    while (fast?.next != null) {
         slow = slow?.next;
         fast = fast?.next?.next;
+        //console.log(`  slow:${slow.val}, fast:${fast?.val}`);
     }
     // At the end, slow is the last node in the first list.
     // Head of second list is slow.next
-    console.log(`  middle: ${slow.val}`);
+    //console.log(`  middle: ${slow.val}`);
     
 
     // 2. Reverse the list of the 2nd list
-    let prev = slow;
+    let prev = null;
     let current = slow.next;
     let next = null;
-    console.log(`    prev:    ${prev?.val}`);
-    console.log(`    current: ${current?.val} -> ${current?.next?.val}`);
-    console.log(`    next:    ${next?.val}`);
-    console.log(`    -----`);
 
     while (current != null) {     
         next = current.next;
@@ -81,41 +74,43 @@ let threeSteps = (head) => {
         prev = current;
         current = next;
 
-        console.log(`    prev:    ${prev?.val}`);
-        console.log(`    current: ${current?.val} -> ${current?.next?.val}`);
-        console.log(`    next:    ${next?.val}`);
-        console.log(`    -----`);
+        // console.log(`    prev:    ${prev?.val} -> ${prev?.next?.val}`);
+        // console.log(`    current: ${current?.val} -> ${current?.next?.val}`);
+        // console.log(`    next:    ${next?.val}`);
+        // console.log(`    -----`);
     }
-    console.log(`    -----`);
-    console.log(`2: ${LinkedListHelper.toString(head)}`);
     
+    // Start of list2
     let head2 = prev;
-    console.log(`    head: ${head?.val} -> ${head?.next?.val} -> ${head?.next?.next?.val} -> ${head?.next?.next?.next?.val} -> ${head?.next?.next?.next?.next?.val}`);
-    console.log(`    head2: ${head2?.val} -> ${head2?.next?.val}`);
+
+    // Point end of list1 to null
+    slow.next = null;
 
     // 3. Merge first and second lists
     let l1 = head;
     let l2 = prev;
-    console.log(`  l1: ${l1.val}`);
-    console.log(`  l2: ${l2.val}`);
-    // while (l1.next != prev) {
-    //     console.log(`    l1: ${l1.val}, prev: ${prev.val}`);
-    //     let tmp1 = l1.next;
-    //     let tmp2 = l2.next;
+    // l2 might be null because the way we picked our mid means l1.length >= l2.length
+    while (l1 != null && l2) {
+        let tmp1 = l1.next;
+        let tmp2 = l2?.next;
 
-    //     // Add next nodes to the list
-    //     l1.next = l2;
-    //     l2.next = tmp1;
+        // Add next nodes to the list
+        l1.next = l2;
+        if (l2 != null) l2.next = tmp1;
 
-    //     // Move pointers
-    //     l1 = tmp1;
-    //     l2 = tmp2;
-    // }
+        // Move pointers
+        l1 = tmp1;
+        l2 = tmp2;
+        //console.log(`    > ${LinkedListHelper.toString(head)}`);
+    }
+
+    return head;
 };
 
 let inputs = [
-    //{ head:[1,2,3,4], output:[1,4,2,3] },
+    { head:[1,2,3,4], output:[1,4,2,3] },
     { head:[1,2,3,4,5], output:[1,5,2,4,3] },
+    { head:[1,2,3,4,5,6,7,8], output:[1,8,2,7,3,6,4,5] },
 ];
 
 // Comparing array/object output
