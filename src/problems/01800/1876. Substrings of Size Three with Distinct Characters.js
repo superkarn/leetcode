@@ -11,7 +11,7 @@ var countGoodSubstrings = function(s) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = slidingWindow(s);
+    let result = slidingWindow2(s);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -38,7 +38,6 @@ let slidingWindow = (s) => {
         if (i < TARGET_LENGTH) {
             // Add the new character
             window.push(s[i]);
-
             
             // If  set size is the same as TARGET_LENGTH, increment count
             if ((new Set(window).size) == TARGET_LENGTH) {
@@ -65,7 +64,40 @@ let slidingWindow = (s) => {
     return distinctCount;
 };
 
+// attempt1: better sliding windows
+let slidingWindow2 = (s) => {
+    let TARGET_LENGTH = 3;
+
+    // Special cases
+    if (s.length < TARGET_LENGTH) return 0;
+
+    let distinctCount = 0;
+
+    // Check the first TARGET_LENGTH characters
+    let window = s.slice(0, TARGET_LENGTH).split('');    
+    if ((new Set(window).size) == TARGET_LENGTH) {
+        distinctCount++;
+    }
+
+    // Then use sliding windows for the rest
+    for (let i=TARGET_LENGTH; i<s.length; i++) {
+        // Remove the first entry
+        window.shift();
+
+        // Then add the next entry
+        window.push(s[i]);
+
+        // If  set size is the same as TARGET_LENGTH, increment count
+        if ((new Set(window).size) == TARGET_LENGTH) {
+            distinctCount++;
+        }
+    };
+
+    return distinctCount;
+};
+
 let inputs = [
+    { s:"", output:0 },
     { s:"xyzzaz", output:1 },
     { s:"aababcabc", output:4 },
     { s:"aababcabcaa", output:5 },
