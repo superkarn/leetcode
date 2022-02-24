@@ -11,7 +11,7 @@ var countGoodSubstrings = function(s) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = slidingWindow2(s);
+    let result = slidingWindow3(s);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -92,6 +92,22 @@ let slidingWindow2 = (s) => {
             distinctCount++;
         }
     };
+
+    return distinctCount;
+};
+
+// https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/discuss/1238721/Java-5-liner-O(n)
+// Check i-1, i, i+1
+let slidingWindow3 = (s) => {
+    let distinctCount = 0;
+
+    for (let i=1; i<s.length-1; i++) {
+        if (s[i-1] != s[i] &&
+            s[i]   != s[i+1] &&
+            s[i+1] != s[i-1]) {
+                distinctCount++;
+            }
+    }
 
     return distinctCount;
 };
