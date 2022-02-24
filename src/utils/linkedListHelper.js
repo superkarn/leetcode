@@ -68,10 +68,11 @@ class LinkedListHelper {
         return result;
     };
 
-    static toString = (head) => {
+    static toString = (head, chainCount=10) => {
         if (head == null) return '';
+        if (chainCount == 0) return '';
         
-        return `${head.val},${LinkedListHelper.toString(head.next)}`;
+        return `${head.val},${LinkedListHelper.toString(head.next, chainCount-1)}`;
     };
 }
 
