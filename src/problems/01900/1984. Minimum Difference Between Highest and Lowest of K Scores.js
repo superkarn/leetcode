@@ -13,7 +13,7 @@ var minimumDifference = function(nums, k) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(nums, k);
+    let result = slidingWindow(nums, k);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -27,10 +27,29 @@ var minimumDifference = function(nums, k) {
     return result;
 };
 
-// attempt1: description on the algorithm
-let bruteForce = (nums, k) => {
-    let result = nums;
+// 1. Sort the list
+// 2. Use sliding window of size k
+// 3. Check the first and last numbers of each window
+// 4. Find the smallest difference
+let slidingWindow = (nums, k) => {
+    // Result is the smallest difference
+    let result = Number.MAX_SAFE_INTEGER;
 
+    // 1. Sort the list
+    let sorted = nums.sort((a,b) => a-b);
+    //console.log(`sorted: ${sorted}`);
+
+    // 2. Use sliding window of size k
+    for (let i=0; i<=nums.length-k; i++) {
+        // 3. Check the first and last numbers of each window
+        let diff = nums[i+k-1] - nums[i];
+        
+        // 4. Find the smallest difference
+        result = Math.min(result, diff);
+
+        //console.log(`  [${i},${i+k-1}] -> ${nums[i]},${nums[i+k-1]} -> ${diff} -> ${result}`);
+    }
+    
     return result;
 };
 
