@@ -11,7 +11,7 @@ var longestNiceSubstring = function(s) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = slidingWindow(s);
+    let result = divideAndConquer(s);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -98,12 +98,44 @@ let getNiceLetters = (s) => {
     return Object.keys(letters);
 };
 
+// 1. Use a Set to track the unique letters
+// 2. Loop through each letter
+// 3. Break the string up at the first "not-nice" letter
+// 4. Repeat for each of the 2 new substring
+// 5. Return the longer of the 2 results
+let divideAndConquer = (s) => {
+    // Special cases
+    if (s.length < 2) return '';
+
+    let set = new Set(...s.split());
+    //console.log(`s:${s}, set:${Array.from(set.values())}`);
+
+    for (let i=0; i<s.length; i++) {
+        //console.log(`  i:${i}---`);
+
+        // If the letter is nice, skip
+        if (set.has(s[i].toLowerCase()) && set.has(s[i].toUpperCase())) continue;
+
+        //console.log(`    splitting [0,${i}](${s.slice(0, i)}) --[${s[i]}]-- [${i+1},${s.length}](${s.slice(i+1, s.length)})`);
+
+        let result1 = divideAndConquer(s.slice(0, i));
+        let result2 = divideAndConquer(s.slice(i+1, s.length));
+
+        //console.log(`    s:${s}, r1[0,${i}]:${result1}, r2[${i+1},${s.length}]:${result2} -> ${result1?.length > result2?.length ? result1 : result2}`);
+
+        return result1?.length > result2?.length ? result1 : result2;
+    }
+
+    return s;
+};
+
 let inputs = [
     { s:"YazaAay", output:"aAa" },
     { s:"wXYazaAay", output:"aAa" },
     { s:"Bb", output:"Bb" },
     { s:"c", output:"" },
     { s:"HkhBubUYy", output:"BubUYy" },
+    { s:"dDzeE", output:"dD" },
 ];
 
 // Comparing scalar output
