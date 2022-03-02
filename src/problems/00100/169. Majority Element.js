@@ -11,7 +11,7 @@ var majorityElement = function(nums) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(nums);
+    let result = boyerMore(nums);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -46,6 +46,23 @@ let bruteForce = (nums) => {
 let sortingSolution = (nums) => {
     nums.sort((a,b) => a-b);
     return nums[Math.floor(nums.length/2)];
+};
+
+// Boyer-Moore Voting Algorithm
+// https://www.cs.utexas.edu/~moore/best-ideas/mjrty/
+let boyerMore = (nums) => {
+    let count = 0;
+    let result = 0;
+
+    for (let i=0; i<nums.length; i++) {
+        if (count == 0) {
+            result = nums[i];
+        }
+
+        count += (nums[i] == result) ? 1 : -1;
+    }
+
+    return result;
 };
 
 let inputs = [
