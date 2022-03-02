@@ -27,9 +27,18 @@ var majorityElement = function(nums) {
 
 // attempt1: description on the algorithm
 let bruteForce = (nums) => {
-    let result = nums;
+    const TARGET = Math.floor(nums.length/2) +1;
+    let frequencies = {};
 
-    return result;
+    for (let i=0; i<nums.length; i++) {
+        frequencies[nums[i]] = 1 + (frequencies[nums[i]] ? frequencies[nums[i]] : 0);
+
+        if (frequencies[nums[i]] >= TARGET) {
+            return nums[i];
+        }
+    }
+
+    return 0;
 };
 
 let inputs = [
