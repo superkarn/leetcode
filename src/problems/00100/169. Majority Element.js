@@ -25,7 +25,7 @@ var majorityElement = function(nums) {
     return result;
 };
 
-// attempt1: description on the algorithm
+// Count each number's frequency.  Return the first one that crosses the threshold.
 let bruteForce = (nums) => {
     const TARGET = Math.floor(nums.length/2) +1;
     let frequencies = {};
@@ -39,6 +39,13 @@ let bruteForce = (nums) => {
     }
 
     return 0;
+};
+
+// Sort, then grab the middle element.
+// Not as efficient because sort is O(nlogn)
+let sortingSolution = (nums) => {
+    nums.sort((a,b) => a-b);
+    return nums[Math.floor(nums.length/2)];
 };
 
 let inputs = [
