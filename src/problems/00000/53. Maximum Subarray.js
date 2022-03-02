@@ -63,11 +63,14 @@ let slidingWindow = (nums) => {
     // Special cases
     if (!nums || nums.length == 0) return 0;
 
-    let result = Number.MIN_SAFE_INTEGER;
     let l=0, r=0;
+    let result = nums[0];
+    let currentSum = 0;
+
+    //console.log(`nums:${nums}`);
 
     while (r<nums.length) {
-        let currentSum = nums.slice(l,r+1).reduce((prev, curr) => prev+curr);
+        currentSum += nums[r];
         //console.log(`  [${l},${r}], sum:${currentSum}, result:${result}`);
 
         // If the currentSum is negative, discard and start over
@@ -75,6 +78,7 @@ let slidingWindow = (nums) => {
             // Track result here if we don't have any positive numbers yet
             result = Math.max(result, currentSum);
 
+            currentSum = 0;
             l=r+1;
             r=r+1;
             continue;
