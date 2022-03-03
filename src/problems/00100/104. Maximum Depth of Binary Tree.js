@@ -34,10 +34,12 @@ var maxDepth = function(root) {
 };
 
 // attempt1: description on the algorithm
-let bruteForce = (root) => {
-    let result = root;
+let depthFirstSearch = (root) => {
+    // Special cases
+    if (!root) return 0;
+    if (!root.left && !root.right) return 1;
 
-    return result;
+    return 1 + Math.max(depthFirstSearch(root.left), depthFirstSearch(root.right));
 };
 
 let inputs = [
