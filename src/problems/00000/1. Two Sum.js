@@ -13,7 +13,7 @@ var twoSum = function(nums, target) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = dictionaryApproach(nums, target);
+    let result = dictionaryApproach2(nums, target);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -96,15 +96,25 @@ let dictionaryApproach = (nums, target) => {
     return [];
 };
 
+// Same as dictionaryApproach, but redoing from memory.
 let dictionaryApproach2 = (nums, target) => {
+    let cache = {};
 
+    // Loop through each number
+    for (let i=0; i<nums.length; i++) {
+        // If the compliment is in the cache, then we have found the answer.
+        if (cache[nums[i]] != null) {
+            return [i,cache[nums[i]]];
+        } 
+        // If not, then add the compliment value and index to the cache.
+        else {
+            cache[target-nums[i]] = i;
+        }
+    }
+
+    // Should not get here, since there's guaranteed to be a solution in the input.
+    return [];
 };
-
-//let input = [2,7,11,15];
-let input = [3,2,4];
-let target = 6;
-let output = twoSum(input, target);
-console.log(output);
 
 let inputs = [
     { nums:[2,7,11,15], target:9, output:[0,1] },
