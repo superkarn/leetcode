@@ -7,17 +7,21 @@
 var twoSum = function(nums, target) {
     let startTime = Date.now();
     console.log('--------------------------');
+    console.log('--Parameters--------------');
     console.log(`nums      :  ${nums}`);
     console.log(`target    :  ${target}`);
-    
-    
-    //let result = bruteForce(nums, target);
-    //let result = twoPointers(nums, target);
-    let result = dictionaryApproach(nums, target);    
 
+    // Pick the algorithm
+    console.log('--Logs--------------------');
+    let result = dictionaryApproach2(nums, target);
+    
     let endTime = Date.now();
+    console.log('--Stats-------------------');
     console.log('Memory    : ', process.memoryUsage().heapUsed);
     console.log('Total time: ', endTime - startTime);
+
+    console.log('--Result------------------');
+    console.log(result);
     console.log('--------------------------');
 
     return result;
@@ -92,8 +96,31 @@ let dictionaryApproach = (nums, target) => {
     return [];
 };
 
-//let input = [2,7,11,15];
-let input = [3,2,4];
-let target = 6;
-let output = twoSum(input, target);
-console.log(output);
+// Same as dictionaryApproach, but redoing from memory.
+let dictionaryApproach2 = (nums, target) => {
+    let cache = {};
+
+    // Loop through each number
+    for (let i=0; i<nums.length; i++) {
+        // If the compliment is in the cache, then we have found the answer.
+        if (cache[nums[i]] != null) {
+            return [i,cache[nums[i]]];
+        } 
+        // If not, then add the compliment value and index to the cache.
+        else {
+            cache[target-nums[i]] = i;
+        }
+    }
+
+    // Should not get here, since there's guaranteed to be a solution in the input.
+    return [];
+};
+
+let inputs = [
+    { nums:[2,7,11,15], target:9, output:[0,1] },
+    { nums:[3,2,4], target:6, output:[1,2] },
+    { nums:[3,3], target:6, output:[0,1] },
+];
+
+// Comparing array/object output
+console.log(inputs.map(x => JSON.stringify(twoSum(x.nums, x.target)) === JSON.stringify(x.output)));
