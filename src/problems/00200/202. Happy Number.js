@@ -27,9 +27,22 @@ var isHappy = function(n) {
 
 // attempt1: description on the algorithm
 let bruteForce = (n) => {
-    let result = n;
+    let curr = n;
+    let cache = new Set();
+    
+    while (true) {
+        if (cache.has(curr)) return false;
 
-    return result;
+        // Track numbers we've already seen
+        cache.add(curr);
+
+        let digits = (curr+"").split('');
+        curr = digits.reduce((prev, curr) => prev + curr*curr, 0);
+
+        if (curr==1) return true;
+    }
+
+    throw new Error("Something went wrong");
 };
 
 let inputs = [
