@@ -57,8 +57,10 @@ let cycleDection = (n) => {
         fast = (fast+'').split('').reduce((prev, curr) => prev + curr*curr, 0);
         fast = (fast+'').split('').reduce((prev, curr) => prev + curr*curr, 0);
 
+        // If fast gets to 1, then we know the answer is true
         if (fast==1) return true;
 
+        // If slow catches up to fast, then we know there is a cycle
         if (slow==fast) return false;
     }
 
