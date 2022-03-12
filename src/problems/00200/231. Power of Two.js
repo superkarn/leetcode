@@ -11,7 +11,7 @@ var isPowerOfTwo = function(n) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce(n);
+    let result = bruteForce2(n);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -33,6 +33,18 @@ let bruteForce = (n) => {
     if (Number.isInteger(n)==false) return false;
 
     return bruteForce(n/2);
+};
+
+// Keep dividing by 2 until you get to 1 or a non integer
+// Using loop
+let bruteForce2 = (n) => {    
+    while (Number.isInteger(n)) {
+        if (n==1) return true;
+
+        n = n/2;
+    }
+
+    return false;
 };
 
 let inputs = [
