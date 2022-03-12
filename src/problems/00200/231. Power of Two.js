@@ -25,11 +25,14 @@ var isPowerOfTwo = function(n) {
     return result;
 };
 
-// attempt1: description on the algorithm
+// Keep dividing by 2 until you get to 1 or a non integer
+// Using recursive
 let bruteForce = (n) => {
-    let result = n;
+    // Special cases
+    if (n==1) return true;
+    if (Number.isInteger(n)==false) return false;
 
-    return result;
+    return bruteForce(n/2);
 };
 
 let inputs = [
@@ -41,6 +44,11 @@ let inputs = [
     { n:8, output:true },
     { n:16, output:true },
     { n:32, output:true },
+    { n:1048576, output:true }, // 2^10
+    { n:4294967295, output:false }, // 2^32 - 1
+    { n:18446744073709551616, output:true }, // 2^64
+    { n:1267650600228229401496703205376, output:true }, // 2^100
+    
 ];
 
 // Comparing scalar output
