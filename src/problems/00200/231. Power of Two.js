@@ -11,7 +11,7 @@ var isPowerOfTwo = function(n) {
 
     // Pick the algorithm
     console.log('--Logs--------------------');
-    let result = bruteForce2(n);
+    let result = log2(n);
     
     let endTime = Date.now();
     console.log('--Stats-------------------');
@@ -47,6 +47,11 @@ let bruteForce2 = (n) => {
     return false;
 };
 
+// Use log
+let log2 = (n) => {    
+    return Number.isInteger(Math.log2(n));
+};
+
 let inputs = [
     { n:1, output:true },
     { n:2, output:true },
@@ -56,7 +61,7 @@ let inputs = [
     { n:8, output:true },
     { n:16, output:true },
     { n:32, output:true },
-    { n:1048576, output:true }, // 2^10
+    { n:1048576, output:true }, // 2^20
     { n:4294967295, output:false }, // 2^32 - 1
     { n:18446744073709551616, output:true }, // 2^64
     { n:1267650600228229401496703205376, output:true }, // 2^100
