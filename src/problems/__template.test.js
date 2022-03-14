@@ -21,18 +21,16 @@ let solution2 = (param1) => {
 
 describe('111. Problem Title', () => {
     const cases = [
-        { n:0, expected:false },
-        { n:1, expected:true },
-        { n:2, expected:true },
+        { param1:0, expected:false },
+        { param1:1, expected:true },
+        { param1n:2, expected:true },
     ];
 
-    test.each(cases)('bruteForce()', ({n, expected})  => {
-        let result = bruteForce(n);
-        expect(result).toEqual(expected);
+    test.each(cases)('bruteForce()', ({param1, expected})  => {
+        expect(bruteForce(param1)).toEqual(expected);
     });
 
-    test.each(cases)('solution2()', ({n, expected})  => {
-        let result = solution2(n);
-        expect(result).toEqual(expected);
+    test.each(cases)('solution2()', ({param1, expected})  => {
+        expect(solution2(param1)).toEqual(expected);
     });
 });
