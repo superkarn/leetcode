@@ -47,8 +47,22 @@ let bruteForce = (n) => {
     return current == 1;
 };
 
+// Slightly modified
+// https://leetcode.com/problems/ugly-number/discuss/69214/2-4-lines-every-language
+let usingMod = (n) => {
+    [2,3,5].forEach(d => {
+        while (n>0 && (n%d) ==0) {
+            n /= d;
+        }
+    });
+
+    return n == 1;
+};
+
+
 describe('263. Ugly Number', () => {
     const cases = [
+        { n:0, expected:false },
         { n:1, expected:true },
         { n:6, expected:true },
         { n:14, expected:false },
@@ -59,6 +73,15 @@ describe('263. Ugly Number', () => {
         // Arrange    
         // Act
         let result = bruteForce(n);
+    
+        // Assert
+        expect(result).toEqual(expected);
+    });
+
+    test.each(cases)('usingMod()', ({n, expected})  => {
+        // Arrange    
+        // Act
+        let result = usingMod(n);
     
         // Assert
         expect(result).toEqual(expected);
