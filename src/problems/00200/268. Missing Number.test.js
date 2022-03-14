@@ -31,6 +31,15 @@ let onePass = (nums) => {
     return nums.length;
 };
 
+// Using sum
+// https://leetcode.com/problems/missing-number/discuss/69943/Java-O(N)-O(1)-solution-using-math-knowledge
+let usingSum = (nums) => {
+    let totalSum = (nums.length * (nums.length+1)) / 2;
+    let arraySum = nums.reduce((prev, curr) => prev + curr, 0);
+
+    return totalSum - arraySum;
+};
+
 // Using XOR: a^b^b = a
 // https://leetcode.com/problems/missing-number/discuss/69791/4-Line-Simple-Java-Bit-Manipulate-Solution-with-Explaination
 let usingXor = (nums) => {
@@ -57,6 +66,11 @@ describe('268. Missing Number', () => {
 
     test.each(cases)('onePass()', ({nums, expected})  => {
         let result = onePass(nums);
+        expect(result).toEqual(expected);
+    });
+
+    test.each(cases)('usingSum()', ({nums, expected})  => {
+        let result = usingSum(nums);
         expect(result).toEqual(expected);
     });
 
