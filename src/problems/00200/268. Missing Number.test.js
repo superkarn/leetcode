@@ -15,11 +15,20 @@ let usingSort = (nums) => {
     else return nums.length;
 };
 
-// TODO
-let solution2 = (nums) => {
-    let result = nums;
+// Loop through and mark each item off in a separate array
+// The one missing is the answer.  If none is missing, the length
+// is the answer.
+let onePass = (nums) => {
+    let cache = [];
+    for (let i=0; i<nums.length; i++) {
+        cache[nums[i]] = 1;
+    }
+    
+    for (let i=0; i<nums.length; i++) {
+        if (!cache[i]) return i;
+    }
 
-    return result;
+    return nums.length;
 };
 
 
@@ -31,12 +40,12 @@ describe('268. Missing Number', () => {
     ];
 
     test.each(cases)('usingSort()', ({nums, expected})  => {
-        let result = usingSort(nums);
+        let result = usingSort(nums); 
         expect(result).toEqual(expected);
     });
 
-    //test.each(cases)('solution2()', ({nums, expected})  => {
-    //    let result = solution2(nums);
-    //    expect(result).toEqual(expected);
-    //});
+    test.each(cases)('onePass()', ({nums, expected})  => {
+        let result = onePass(nums);
+        expect(result).toEqual(expected);
+    });
 });
