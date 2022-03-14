@@ -13,7 +13,11 @@ npm run test
 ### Running specifical tests
 Run the following command line from the root folder.
 ```
+# Simple run
 npm  test -- -t "Name of the test"
+
+# To display console logs
+npm  test -- --verbose false -t "Name of the test"
 ```
 
 ## Misc
