@@ -60,22 +60,18 @@ describe('268. Missing Number', () => {
     ];
 
     test.each(cases)('usingSort()', ({nums, expected})  => {
-        let result = usingSort(nums); 
-        expect(result).toEqual(expected);
+        expect(usingSort(nums)).toEqual(expected);
     });
 
     test.each(cases)('onePass()', ({nums, expected})  => {
-        let result = onePass(nums);
-        expect(result).toEqual(expected);
+        expect(onePass(nums)).toEqual(expected);
     });
 
     test.each(cases)('usingSum()', ({nums, expected})  => {
-        let result = usingSum(nums);
-        expect(result).toEqual(expected);
+        expect(usingSum(nums)).toEqual(expected);
     });
 
     test.each(cases)('usingXor()', ({nums, expected})  => {
-        let result = usingXor(nums);
-        expect(result).toEqual(expected);
+        expect(usingXor(nums)).toEqual(expected);
     });
 });
