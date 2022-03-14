@@ -4,11 +4,15 @@
  * @return {number}
  */
 
-// attempt1: description on the algorithm
-let bruteForce = (nums) => {
-    let result = nums;
+// Sort, then search for the value that doesn't match index
+// The answer is the index-1
+// If no valid index, then the answer is the last one.
+let usingSort = (nums) => {
+    nums.sort((a,b) => a-b);
+    let result = nums.find((v, i) => v!=i);
 
-    return result;
+    if (result) return result - 1;
+    else return nums.length;
 };
 
 // TODO
@@ -26,13 +30,13 @@ describe('268. Missing Number', () => {
         { nums:[9,6,4,2,3,5,7,0,1], expected:8 },
     ];
 
-    test.each(cases)('bruteForce()', ({nums, expected})  => {
-        let result = bruteForce(nums);
+    test.each(cases)('usingSort()', ({nums, expected})  => {
+        let result = usingSort(nums);
         expect(result).toEqual(expected);
     });
 
-    test.each(cases)('solution2()', ({nums, expected})  => {
-        let result = solution2(nums);
-        expect(result).toEqual(expected);
-    });
+    //test.each(cases)('solution2()', ({nums, expected})  => {
+    //    let result = solution2(nums);
+    //    expect(result).toEqual(expected);
+    //});
 });
