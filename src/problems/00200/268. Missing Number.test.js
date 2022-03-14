@@ -31,6 +31,17 @@ let onePass = (nums) => {
     return nums.length;
 };
 
+// Using XOR: a^b^b = a
+// https://leetcode.com/problems/missing-number/discuss/69791/4-Line-Simple-Java-Bit-Manipulate-Solution-with-Explaination
+let usingXor = (nums) => {
+    let result = 0;
+    for (let i=0; i<nums.length; i++) {
+        result = result ^ i ^ nums[i];
+    }
+
+    return result ^ nums.length;
+};
+
 
 describe('268. Missing Number', () => {
     const cases = [
@@ -46,6 +57,11 @@ describe('268. Missing Number', () => {
 
     test.each(cases)('onePass()', ({nums, expected})  => {
         let result = onePass(nums);
+        expect(result).toEqual(expected);
+    });
+
+    test.each(cases)('usingXor()', ({nums, expected})  => {
+        let result = usingXor(nums);
         expect(result).toEqual(expected);
     });
 });
